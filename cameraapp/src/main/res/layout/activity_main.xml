@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cameraapp.MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相机适配"
+        android:id="@+id/came_btn"
+        android:layout_below="@+id/retrofit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="视屏"
+        android:id="@+id/vieo"
+        android:layout_below="@+id/came_btn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="微信录制"
+        android:id="@+id/weixin_btn"
+        android:layout_below="@+id/vieo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="retrofit"
+        android:id="@+id/retrofit"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK请求"
+        android:id="@+id/btn_ok"
+        android:layout_below="@+id/weixin_btn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="自定义View"
+        android:id="@+id/btn_view"
+        android:layout_above="@+id/came_btn"
+        android:layout_toRightOf="@+id/retrofit"
+        android:layout_toEndOf="@+id/retrofit" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service"
+        android:id="@+id/btn_service"
+        android:layout_below="@+id/retrofit"
+        android:layout_toRightOf="@+id/came_btn"
+        android:layout_toEndOf="@+id/came_btn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="算法"
+        android:id="@+id/btn_sf"
+        android:layout_above="@+id/weixin_btn"
+        android:layout_toRightOf="@+id/vieo"
+        android:layout_toEndOf="@+id/vieo" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="线程池"
+        android:id="@+id/btn_pool"
+        android:layout_above="@+id/btn_ok"
+        android:layout_toRightOf="@+id/weixin_btn"
+        android:layout_toEndOf="@+id/weixin_btn" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="广播"
+        android:id="@+id/btn_gb"
+        android:layout_alignBottom="@+id/btn_ok"
+        android:layout_toRightOf="@+id/btn_ok"
+        android:layout_toEndOf="@+id/btn_ok" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dagger"
+        android:id="@+id/btn_dagger"
+        android:textAllCaps="false"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="图片3级缓存"
+        android:id="@+id/btn_img"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/btn_dagger"
+        android:layout_toEndOf="@+id/btn_dagger" />
+
+
+</RelativeLayout>

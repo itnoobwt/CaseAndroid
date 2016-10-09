@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.system.caseandroid.one.TableActivity"
+    android:elevation="1dp">
+    <ToggleButton
+        android:id="@+id/tb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="No"
+        android:fontFamily="sans-serif"
+        android:textOn="Yes"/>
+    <Switch
+        android:id="@+id/sh"
+        android:layout_width="wrap_content"
+        android:switchMinWidth="100pt"
+        android:layout_height="wrap_content" />
+
+    <AnalogClock
+        android:layout_width="match_parent"
+        android:layout_height="50pt" />
+
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format12Hour="yyyy年MM月dd日 H:mma EEE"
+        android:textSize="15pt"/>
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cm"/>
+    <QuickContactBadge
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/qcb"/>
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dropDownHeight="wrap_content"
+        android:completionThreshold="1"
+        android:id="@+id/act"/>
+    <MultiAutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mact"
+        android:completionThreshold="1"/>
+</LinearLayout>

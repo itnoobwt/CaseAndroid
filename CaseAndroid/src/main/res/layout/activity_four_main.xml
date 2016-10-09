@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_four_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    android:divider="?android:attr/dividerHorizontal"
+    tools:context="com.system.caseandroid.four.FourMainActivity">
+    <fragment
+        android:name="com.system.caseandroid.four.BookListFragment"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:id="@+id/book_list"/>
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:id="@+id/book_detail_container"
+        android:layout_height="match_parent"/>
+</LinearLayout>

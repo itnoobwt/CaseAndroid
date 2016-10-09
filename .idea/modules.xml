@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CaseAndroid/CaseAndroid.iml" filepath="$PROJECT_DIR$/CaseAndroid/CaseAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cameraapp/cameraapp.iml" filepath="$PROJECT_DIR$/cameraapp/cameraapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/networkcase/networkcase.iml" filepath="$PROJECT_DIR$/networkcase/networkcase.iml" />
+    </modules>
+  </component>
+</project>

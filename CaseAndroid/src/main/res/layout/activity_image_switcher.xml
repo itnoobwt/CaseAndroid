@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_image_switcher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.system.caseandroid.one.TextSwitcherActivity">
+
+    <TextSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tsc"
+        android:inAnimation="@anim/slide_out_left"
+        android:outAnimation="@anim/slide_in_right"></TextSwitcher>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_txt"
+        android:onClick="next"
+        android:textAllCaps="false"
+        android:text="TextSwitcher控件"/>
+</LinearLayout>

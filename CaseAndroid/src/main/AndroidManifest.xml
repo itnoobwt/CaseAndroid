@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.system.caseandroid">
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 短信权限 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".one.OneMainActivity" />
+        <activity
+            android:name=".one.TableActivity"
+            android:label="@string/title_activity_table"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".one.AdapterViewFlipperActivity" />
+        <activity android:name=".one.StackViewActivity" />
+        <activity android:name=".one.ProgressBarActivity" />
+        <activity android:name=".one.ViewAnimatorActivity" />
+        <activity android:name=".one.TextSwitcherActivity" />
+        <activity android:name=".one.ViewFlipperActivity" />
+        <activity android:name=".one.CalendarViewActivity" />
+        <activity android:name=".one.SearcheViewActivity" />
+        <activity android:name=".one.NotificationActivity" />
+        <activity android:name=".three.ThreeMainActivity" />
+        <activity
+            android:name=".three.PlaneActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".three.SendSmsActivity" />
+        <activity
+            android:name=".three.ConfigurationActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".three.HandlerActivity" />
+        <activity android:name=".three.AsyncTaskActivity" />
+        <activity android:name=".four.FourMainActivity" />
+    </application>
+
+</manifest>
