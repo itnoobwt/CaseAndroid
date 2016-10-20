@@ -8,14 +8,20 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import butterknife.BindView;
+import com.system.caseandroid.Fives.FivesMainActivity;
 import com.system.caseandroid.adapter.DividerGridItemDecoration;
 import com.system.caseandroid.adapter.MainAdapter;
 import com.system.caseandroid.four.FourMainActivity;
 import com.system.caseandroid.one.OneMainActivity;
 import com.system.caseandroid.one.TableActivity;
+import com.system.caseandroid.seven.BitmapActivity;
+import com.system.caseandroid.seven.SevenActivity;
+import com.system.caseandroid.six.SixMainActivity;
 import com.system.caseandroid.three.ThreeMainActivity;
 
 import java.util.ArrayList;
@@ -55,6 +61,15 @@ public class MainActivity extends BaseActivity
                     case 3:
                         startActivity(new Intent(MainActivity.this, FourMainActivity.class));
                         break;
+                    case 4:
+                        startActivity(new Intent(MainActivity.this, FivesMainActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(MainActivity.this, SixMainActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(MainActivity.this, SevenActivity.class));
+                        break;
                 }
 //                if(list.get(position) == 1){
 //                    startActivity(new Intent(MainActivity.this, OneMainActivity.class));
@@ -76,4 +91,40 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId() == android.R.id.home)
+        {
+            return onKeyDown(android.R.id.home,null);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private long exitTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == android.R.id.home){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        else if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

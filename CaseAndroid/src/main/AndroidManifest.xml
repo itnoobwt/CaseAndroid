@@ -10,6 +10,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
+    <!-- 电话联系人权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 电话拨号权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -49,6 +54,22 @@
         <activity android:name=".three.HandlerActivity" />
         <activity android:name=".three.AsyncTaskActivity" />
         <activity android:name=".four.FourMainActivity" />
+        <activity android:name=".Fives.FivesMainActivity" />
+        <activity android:name=".Fives.SecondActivity" />
+        <activity android:name=".Fives.ExtraActivity" />
+        <activity android:name=".six.SixMainActivity" />
+        <activity android:name=".six.ResouresActivity" />
+        <activity android:name=".six.AnimationActivity" />
+        <activity android:name=".six.ObjectAnimatorActivity" />
+        <activity android:name=".six.OriginalActivity" />
+        <activity android:name=".six.CustomActivity" />
+        <activity android:name=".six.SoundActivity" />
+        <activity android:name=".six.LanguageActivity" />
+        <activity android:name=".seven.BitmapActivity" />
+        <activity android:name=".seven.SevenActivity" />
+        <activity android:name=".seven.DrawActivity" />
+        <activity android:name=".seven.PathActivity" />
+        <activity android:name=".seven.DemoActivity"></activity>
     </application>
 
 </manifest>

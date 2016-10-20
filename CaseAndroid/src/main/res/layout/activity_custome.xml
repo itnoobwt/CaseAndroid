@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto/com.system.caseandroid.six.widegt"
+    android:id="@+id/activity_custome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.system.caseandroid.six.widegt.AlphaImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/javaee"
+        app:duration="6000"/>
+
+</RelativeLayout>
