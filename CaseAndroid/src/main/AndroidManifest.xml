@@ -17,6 +17,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".MyApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -69,7 +70,11 @@
         <activity android:name=".seven.SevenActivity" />
         <activity android:name=".seven.DrawActivity" />
         <activity android:name=".seven.PathActivity" />
-        <activity android:name=".seven.DemoActivity"></activity>
+        <activity android:name=".seven.DemoActivity" />
+        <activity android:name=".seven.BallActivity" />
+        <activity android:name=".seven.MatrixActivity" />
+        <activity android:name=".seven.ActivityBitmapAssetsActivity" />
+        <activity android:name=".seven.BitmapCaseActivity"></activity>
     </application>
 
 </manifest>

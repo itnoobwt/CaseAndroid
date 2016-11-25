@@ -19,7 +19,6 @@ public class DrawView extends View
     Bitmap cacheBitmap = null;
     //定义cacheBitmap上的Canvas对象
     private Canvas cacheCanvas = null;
-    private Canvas c;
     public DrawView(Context context, int width,int height)
     {
         super(context);
@@ -31,6 +30,7 @@ public class DrawView extends View
         //设置画笔的颜色
         paint = new Paint(Paint.DITHER_FLAG);
         paint.setColor(Color.RED);
+
         // 设置画笔风格
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(1);
@@ -69,43 +69,14 @@ public class DrawView extends View
     protected void onDraw(Canvas canvas)
     {
         super.onDraw(canvas);
-        this.c = canvas;
         Paint bmpPaint = new Paint();
         canvas.drawBitmap(cacheBitmap,0,0,bmpPaint);
         canvas.drawPath(path,paint);
     }
 
     public void clearCanvas(int width,int height){
-        c.restore();
-//        float f = paint.getStrokeWidth();
-//        paint = new Paint();
-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-//        cacheCanvas.drawPaint(paint);
-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
-//
-//
-//        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
-//        cacheCanvas = new Canvas();
-//        paint = new Paint(Paint.DITHER_FLAG);
-//        cacheCanvas.setBitmap(cacheBitmap);
-//        // 设置画笔风格
-//        paint.setStyle(Paint.Style.STROKE);
-//        paint.setAntiAlias(true);
-//        paint.setDither(true);
-//        paint.setStrokeWidth(f);
-            invalidate();
-//        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
-//        cacheCanvas = new Canvas();
-//        path = new Path();
-//        cacheCanvas.setBitmap(cacheBitmap);
-//        //设置画笔的颜色
-//        paint = new Paint(Paint.DITHER_FLAG);
-//        paint.setColor(Color.RED);
-//        // 设置画笔风格
-//        paint.setStyle(Paint.Style.STROKE);
-//        paint.setStrokeWidth(1);
-//        //反锯齿
-//        paint.setAntiAlias(true);
-//        paint.setDither(true);
+        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
+        cacheCanvas.setBitmap(cacheBitmap);
+        invalidate();
     }
 }

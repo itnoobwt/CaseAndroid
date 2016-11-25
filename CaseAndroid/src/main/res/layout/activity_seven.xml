@@ -33,4 +33,21 @@
         android:text="Path和Paint案例"
         android:textColor="#ffcc3131"
         android:onClick="demo"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="弹球小游戏"
+        android:textColor="#ffcc3131"
+        android:onClick="minGame"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Matrix用来设置图片旋转、缩放"
+        android:textColor="#ffcc3131"
+        android:typeface="monospace"
+        android:onClick="matrix"/>
+
 </LinearLayout>
