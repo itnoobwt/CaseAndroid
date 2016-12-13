@@ -7,6 +7,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 import com.system.caseandroid.BaseActivity;
 import com.system.caseandroid.R;
+import com.system.caseandroid.inputUtils.IOActivity;
 
 public class SevenActivity extends BaseActivity
 {
@@ -49,4 +50,11 @@ public class SevenActivity extends BaseActivity
         startActivity(new Intent(SevenActivity.this, MatrixActivity.class));
     }
 
+    public void media(View view){
+        startActivity(new Intent(SevenActivity.this, MediaActivity.class));
+    }
+
+    public void io(View view){
+        startActivity(new Intent(SevenActivity.this, IOActivity.class));
+    }
 }

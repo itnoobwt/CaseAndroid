@@ -1,0 +1,3689 @@
+[33mcommit db8fc8adc4d66917d6005c707f85ed6eaa2eecf5[m
+Author: itnoobwt <13753837811@163.com>
+Date:   Fri Nov 25 18:01:59 2016 +0800
+
+    2016-11-25
+
+[1mdiff --git a/.idea/code_generator_settings.xml b/.idea/code_generator_settings.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e2a72fa[m
+[1m--- /dev/null[m
+[1m+++ b/.idea/code_generator_settings.xml[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="UTF-8"?>[m
+[32m+[m[32m<project version="4">[m
+[32m+[m[32m  <component name="CodeGeneratorSettings">[m
+[32m+[m[32m    <option name="sourcePath" value="/CaseAndroid/src/main/java" />[m
+[32m+[m[32m  </component>[m
+[32m+[m[32m</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/.idea/misc.xml b/.idea/misc.xml[m
+[1mindex 1caa136..95f0f03 100644[m
+[1m--- a/.idea/misc.xml[m
+[1m+++ b/.idea/misc.xml[m
+[36m@@ -37,7 +37,7 @@[m
+     <ConfirmationsSetting value="0" id="Add" />[m
+     <ConfirmationsSetting value="0" id="Remove" />[m
+   </component>[m
+[31m-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">[m
+[32m+[m[32m  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">[m
+     <output url="file://$PROJECT_DIR$/build/classes" />[m
+   </component>[m
+   <component name="ProjectType">[m
+[1mdiff --git a/CaseAndroid/build.gradle b/CaseAndroid/build.gradle[m
+[1mindex 78abcd7..113d7ad 100644[m
+[1m--- a/CaseAndroid/build.gradle[m
+[1m+++ b/CaseAndroid/build.gradle[m
+[36m@@ -6,7 +6,7 @@[m [mandroid {[m
+ [m
+     defaultConfig {[m
+         applicationId "com.system.caseandroid"[m
+[31m-        minSdkVersion 21[m
+[32m+[m[32m        minSdkVersion 19[m
+         targetSdkVersion 23[m
+         versionCode 1[m
+         versionName "1.0"[m
+[1mdiff --git a/CaseAndroid/src/main/AndroidManifest.xml b/CaseAndroid/src/main/AndroidManifest.xml[m
+[1mindex 758b9bc..be56882 100644[m
+[1m--- a/CaseAndroid/src/main/AndroidManifest.xml[m
+[1m+++ b/CaseAndroid/src/main/AndroidManifest.xml[m
+[36m@@ -17,6 +17,7 @@[m
+ [m
+     <application[m
+         android:allowBackup="true"[m
+[32m+[m[32m        android:name=".MyApplication"[m
+         android:icon="@mipmap/ic_launcher"[m
+         android:label="@string/app_name"[m
+         android:supportsRtl="true"[m
+[36m@@ -69,7 +70,11 @@[m
+         <activity android:name=".seven.SevenActivity" />[m
+         <activity android:name=".seven.DrawActivity" />[m
+         <activity android:name=".seven.PathActivity" />[m
+[31m-        <activity android:name=".seven.DemoActivity"></activity>[m
+[32m+[m[32m        <activity android:name=".seven.DemoActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.BallActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.MatrixActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.ActivityBitmapAssetsActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.BitmapCaseActivity"></activity>[m
+     </application>[m
+ [m
+ </manifest>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/MyApplication.java b/CaseAndroid/src/main/java/com/system/caseandroid/MyApplication.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..52b18d1[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/MyApplication.java[m
+[36m@@ -0,0 +1,24 @@[m
+[32m+[m[32mpackage com.system.caseandroid;[m
+[32m+[m
+[32m+[m[32mimport android.app.ActivityManager;[m
+[32m+[m[32mimport android.app.Application;[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Created by user on 2016/11/25.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class MyApplication extends Application[m
+[32m+[m[32m{[m
+[32m+[m[32m    public static int maxMemory; //获取运行内存大小[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void onCreate()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate();[m
+[32m+[m[32m        maxMemory = ((ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();[m
+[32m+[m[32m        Log.e("MyApplication---获取内存大小",maxMemory+"M");[m
+[32m+[m[32m        maxMemory = maxMemory*1024*1024/8;[m
+[32m+[m[32m        Log.e("MyApplication---获取内存大小",maxMemory+"M");[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/ActivityBitmapAssetsActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/ActivityBitmapAssetsActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..32f6069[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/ActivityBitmapAssetsActivity.java[m
+[36m@@ -0,0 +1,70 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.content.res.AssetManager;[m
+[32m+[m[32mimport android.graphics.BitmapFactory;[m
+[32m+[m[32mimport android.graphics.drawable.BitmapDrawable;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.app.Activity;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.widget.ImageView;[m
+[32m+[m[32mimport butterknife.BindView;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mimport java.io.IOException;[m
+[32m+[m[32mimport java.io.InputStream;[m
+[32m+[m
+[32m+[m
+[32m+[m[32mpublic class ActivityBitmapAssetsActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    String[] images = null;[m
+[32m+[m[32m    AssetManager assets = null;[m
+[32m+[m[32m    int currentImg = 0;[m
+[32m+[m[32m    @BindView(R.id.image_view)[m
+[32m+[m[32m    ImageView imageview;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState) {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_bitmap_assets);[m
+[32m+[m[32m        assets = getAssets();[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            //在assets/img文件下找图片[m
+[32m+[m[32m            images = assets.list("img");[m
+[32m+[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch (IOException e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            e.printStackTrace();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void btnBitmap(View view){[m
+[32m+[m[32m        if(currentImg >= images.length){[m
+[32m+[m[32m            currentImg = 0;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        while (!images[currentImg].endsWith(".png")&&!images[currentImg].endsWith(".jpg")&&!images[currentImg][m
+[32m+[m[32m                .endsWith(".gif")){[m
+[32m+[m[32m            currentImg++;[m
+[32m+[m[32m            if(currentImg >= images.length){[m
+[32m+[m[32m                currentImg = 0;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m        InputStream assetFile = null;[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            assetFile = assets.open("img/"+images[currentImg++]);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch (IOException e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            e.printStackTrace();[m
+[32m+[m[32m        }[m
+[32m+[m[32m        BitmapDrawable bitmapDrawable = (BitmapDrawable) imageview.getDrawable();[m
+[32m+[m[32m        // 如果图片还未回收，先强制回收该图片[m
+[32m+[m[32m        if(bitmapDrawable!= null && !bitmapDrawable.getBitmap().isRecycled()){[m
+[32m+[m[32m            bitmapDrawable.getBitmap().recycle();[m
+[32m+[m[32m        }[m
+[32m+[m[32m        // 改变ImageView显示的图片[m
+[32m+[m[32m        imageview.setImageBitmap(BitmapFactory.decodeStream(assetFile));[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/BallActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/BallActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ff5886b[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/BallActivity.java[m
+[36m@@ -0,0 +1,84 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.os.Handler;[m
+[32m+[m[32mimport android.os.Message;[m
+[32m+[m[32mimport android.view.*;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m[32mimport com.system.caseandroid.seven.widget.GameView;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 弹球小游戏[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class BallActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    GameView gameView;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        requestWindowFeature(Window.FEATURE_NO_TITLE);[m
+[32m+[m[32m        Display display = getWindowManager().getDefaultDisplay();[m
+[32m+[m[32m        gameView = new GameView(this,display);[m
+[32m+[m[32m        setContentView(gameView);[m
+[32m+[m[32m        gameView.setOnKeyListener(new View.OnKeyListener()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public boolean onKey(View v, int keyCode, KeyEvent event)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                switch (event.getKeyCode()){[m
+[32m+[m[32m                    case KeyEvent.KEYCODE_A:[m
+[32m+[m[32m                        if(gameView.racketX > 0)[m
+[32m+[m[32m                            gameView.racketX -=10;[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                    case KeyEvent.KEYCODE_D:[m
+[32m+[m[32m                        if(gameView.racketX < gameView.displayMetrics.widthPixels - gameView.RACKET_WIDTH)[m
+[32m+[m[32m                            gameView.racketX += 10;[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                }[m
+[32m+[m[32m                gameView.invalidate();[m
+[32m+[m[32m                return true;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m
+[32m+[m[32m        gameView.setOnTouchListener(new View.OnTouchListener()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public boolean onTouch(View v, MotionEvent event)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                switch (event.getAction()){[m
+[32m+[m[32m                    case MotionEvent.ACTION_DOWN:[m
+[32m+[m[32m                        if(gameView.racketX > 0)[m
+[32m+[m[32m                            gameView.racketX -=10;[m
+[32m+[m[32m                        else[m
+[32m+[m[32m                            gameView.racketX +=10;[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                    case MotionEvent.ACTION_MOVE:[m
+[32m+[m[32m                        if(gameView.racketX > 0)[m
+[32m+[m[32m                            gameView.racketX -=10;[m
+[32m+[m[32m                        else[m
+[32m+[m[32m                            gameView.racketX +=10;[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                    case MotionEvent.ACTION_UP:[m
+[32m+[m[32m                        if(gameView.racketX > 0)[m
+[32m+[m[32m                            gameView.racketX -=10;[m
+[32m+[m[32m                        else[m
+[32m+[m[32m                            gameView.racketX +=10;[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                }[m
+[32m+[m[32m                gameView.invalidate();[m
+[32m+[m[32m                return true;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m[32m    }[m
+[32m+[m[32m    Handler handler = new Handler(){[m
+[32m+[m[32m        @Override[m
+[32m+[m[32m        public void handleMessage(Message msg)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            if(msg.what == 0x123)[m
+[32m+[m[32m                gameView.invalidate();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    };[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapActivity.java[m
+[1mindex 16beac8..cd56bb7 100644[m
+[1m--- a/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapActivity.java[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapActivity.java[m
+[36m@@ -1,71 +1,35 @@[m
+ package com.system.caseandroid.seven;[m
+ [m
+[31m-import android.content.res.AssetManager;[m
+[31m-import android.graphics.BitmapFactory;[m
+[31m-import android.graphics.drawable.BitmapDrawable;[m
+[31m-import android.media.Image;[m
+[32m+[m[32mimport android.content.Intent;[m
+ import android.os.Bundle;[m
+ import android.view.View;[m
+[31m-import android.widget.ImageView;[m
+[32m+[m[32mimport android.widget.Button;[m
+[32m+[m[32mimport butterknife.BindView;[m
+[32m+[m[32mimport butterknife.ButterKnife;[m
+[32m+[m[32mimport butterknife.OnClick;[m
+ import com.system.caseandroid.BaseActivity;[m
+ import com.system.caseandroid.R;[m
+ [m
+[31m-import java.io.IOException;[m
+[31m-import java.io.InputStream;[m
+[31m-[m
+ public class BitmapActivity extends BaseActivity[m
+ {[m
+[31m-    String[] images = null;[m
+[31m-    AssetManager assets = null;[m
+[31m-    int currentImg = 0;[m
+[31m-    ImageView imageview;[m
+[32m+[m
+[32m+[m[32m    @BindView(R.id.btn_bitmap)[m
+[32m+[m[32m    Button btnBitmap;[m
+[32m+[m
+     @Override[m
+     protected void onCreate(Bundle savedInstanceState)[m
+     {[m
+         super.onCreate(savedInstanceState);[m
+         setContentView(R.layout.activity_bitmap);[m
+[31m-        imageview = (ImageView)findViewById(R.id.image_view);[m
+[31m-[m
+[31m-        assets = getAssets();[m
+[31m-        try[m
+[31m-        {[m
+[31m-            //在assets/img文件下找图片[m
+[31m-            images = assets.list("img");[m
+[31m-[m
+[31m-        }[m
+[31m-        catch (IOException e)[m
+[31m-        {[m
+[31m-            e.printStackTrace();[m
+[31m-        }[m
+[32m+[m[32m    }[m
+ [m
+[32m+[m[32m    @OnClick(R.id.btn_bitmap)[m
+[32m+[m[32m    public void start(){[m
+[32m+[m[32m        startActivity(new Intent(BitmapActivity.this, BitmapCaseActivity.class));[m
+     }[m
+ [m
+[31m-    public void btnBitmap(View view){[m
+[31m-        if(currentImg >= images.length){[m
+[31m-            currentImg = 0;[m
+[31m-        }[m
+[31m-        while (!images[currentImg].endsWith(".png")&&!images[currentImg].endsWith(".jpg")&&!images[currentImg][m
+[31m-                .endsWith(".gif")){[m
+[31m-            currentImg++;[m
+[31m-            if(currentImg >= images.length){[m
+[31m-                currentImg = 0;[m
+[31m-            }[m
+[31m-        }[m
+[31m-        InputStream assetFile = null;[m
+[31m-        try[m
+[31m-        {[m
+[31m-            assetFile = assets.open("img/"+images[currentImg++]);[m
+[31m-        }[m
+[31m-        catch (IOException e)[m
+[31m-        {[m
+[31m-            e.printStackTrace();[m
+[31m-        }[m
+[31m-        BitmapDrawable bitmapDrawable = (BitmapDrawable) imageview.getDrawable();[m
+[31m-        // 如果图片还未回收，先强制回收该图片[m
+[31m-        if(bitmapDrawable!= null && !bitmapDrawable.getBitmap().isRecycled()){[m
+[31m-            bitmapDrawable.getBitmap().recycle();[m
+[31m-        }[m
+[31m-        // 改变ImageView显示的图片[m
+[31m-        imageview.setImageBitmap(BitmapFactory.decodeStream(assetFile));[m
+[32m+[m[32m    public void btnBitmap(View view)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        startActivity(new Intent(BitmapActivity.this, ActivityBitmapAssetsActivity.class));[m
+     }[m
+ }[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapCaseActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapCaseActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..aa1b8b7[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapCaseActivity.java[m
+[36m@@ -0,0 +1,61 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.graphics.Bitmap;[m
+[32m+[m[32mimport android.graphics.BitmapFactory;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.widget.Button;[m
+[32m+[m[32mimport android.widget.ImageView;[m
+[32m+[m[32mimport android.widget.TextView;[m
+[32m+[m[32mimport butterknife.BindView;[m
+[32m+[m[32mimport butterknife.ButterKnife;[m
+[32m+[m[32mimport butterknife.OnClick;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m[32mimport com.system.caseandroid.seven.utils.MyBitmapCache;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 深入了解Bitmap[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class BitmapCaseActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    @BindView(R.id.btn_img_size)[m
+[32m+[m[32m    Button btnImgSize;[m
+[32m+[m[32m    @BindView(R.id.txt_size)[m
+[32m+[m[32m    TextView txtSize;[m
+[32m+[m[32m    @BindView(R.id.ima_photo)[m
+[32m+[m[32m    ImageView imaPhoto;[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_bitmap_case);[m
+[32m+[m[32m        ButterKnife.bind(this);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 获取到图片的大小[m
+[32m+[m[32m     */[m
+[32m+[m[32m    @OnClick(R.id.btn_img_size)[m
+[32m+[m[32m    public void getCount()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        int count = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher).getByteCount();[m
+[32m+[m[32m        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.xiongmao);[m
+[32m+[m
+[32m+[m[32m        BitmapFactory.decodeResource(getResources(), R.mipmap.xiongmao).getHeight();[m
+[32m+[m[32m        BitmapFactory.decodeResource(getResources(), R.mipmap.xiongmao).recycle();[m
+[32m+[m[32m        txtSize.setText("图片大小：长*宽=" + count + "像素");[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 获取头像，并且进行缓存[m
+[32m+[m[32m     */[m
+[32m+[m[32m    @OnClick(R.id.btn_img_person)[m
+[32m+[m[32m    public void getPhoto()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        MyBitmapCache.getInstance().disPlay("http://avatar.csdn.net/A/E/5/1_csdnwt.jpg",imaPhoto);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/MatrixActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/MatrixActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..835713a[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/MatrixActivity.java[m
+[36m@@ -0,0 +1,63 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.graphics.Bitmap;[m
+[32m+[m[32mimport android.graphics.BitmapFactory;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m[32mimport android.view.KeyEvent;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.view.inputmethod.InputMethodManager;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m[32mimport com.system.caseandroid.seven.widget.MyMatrix;[m
+[32m+[m
+[32m+[m[32mpublic class MatrixActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    private MyMatrix my_matrix;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_matrix);[m
+[32m+[m[32m        my_matrix = (MyMatrix) findViewById(R.id.my_matrix);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void open(View v){[m
+[32m+[m[32m        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);[m
+[32m+[m[32m        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);[m
+[32m+[m
+[32m+[m[32m        boolean isOpen=imm.isActive();[m
+[32m+[m[32m        Log.e("isOpen",isOpen+"");[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public boolean onKeyDown(int keyCode, KeyEvent event)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        switch (keyCode){[m
+[32m+[m[32m            case KeyEvent.KEYCODE_4:[m
+[32m+[m[32m                my_matrix.isScale = false;[m
+[32m+[m[32m                my_matrix.sx += 0.1;[m
+[32m+[m[32m                my_matrix.postInvalidate();[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case KeyEvent.KEYCODE_6:[m
+[32m+[m[32m                my_matrix.isScale = false;[m
+[32m+[m[32m                my_matrix.sx -= 0.1;[m
+[32m+[m[32m                my_matrix.postInvalidate();[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case KeyEvent.KEYCODE_8:[m
+[32m+[m[32m                my_matrix.isScale = true;[m
+[32m+[m[32m                if(my_matrix.scale < 2 )[m
+[32m+[m[32m                    my_matrix.scale += 0.1;[m
+[32m+[m[32m                my_matrix.postInvalidate();[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case KeyEvent.KEYCODE_2:[m
+[32m+[m[32m                my_matrix.isScale = true;[m
+[32m+[m[32m                if(my_matrix.scale > 0.5 )[m
+[32m+[m[32m                    my_matrix.scale -= 0.1;[m
+[32m+[m[32m                my_matrix.postInvalidate();[m
+[32m+[m[32m                break;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return super.onKeyDown(keyCode, event);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/SevenActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/SevenActivity.java[m
+[1mindex f82ad06..6600d2e 100644[m
+[1m--- a/CaseAndroid/src/main/java/com/system/caseandroid/seven/SevenActivity.java[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/SevenActivity.java[m
+[36m@@ -3,6 +3,8 @@[m [mpackage com.system.caseandroid.seven;[m
+ import android.content.Intent;[m
+ import android.os.Bundle;[m
+ import android.view.View;[m
+[32m+[m[32mimport android.widget.Toast;[m
+[32m+[m[32mimport android.widget.VideoView;[m
+ import com.system.caseandroid.BaseActivity;[m
+ import com.system.caseandroid.R;[m
+ [m
+[36m@@ -14,17 +16,37 @@[m [mpublic class SevenActivity extends BaseActivity[m
+     {[m
+         super.onCreate(savedInstanceState);[m
+         setContentView(R.layout.activity_seven);[m
+[32m+[m[32m        //ddd[m
+     }[m
+[31m-    public void bitmap(View view){[m
+[31m-        startActivity(new Intent(SevenActivity.this,BitmapActivity.class));[m
+[32m+[m
+[32m+[m[32m    public void bitmap(View view)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this, BitmapActivity.class));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void draw(View view)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this, DrawActivity.class));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void path(View view)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this, PathActivity.class));[m
+     }[m
+ [m
+[31m-    public void draw(View view){[m
+[31m-        startActivity(new Intent(SevenActivity.this,DrawActivity.class));[m
+[32m+[m[32m    public void demo(View view)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this, DemoActivity.class));[m
+     }[m
+[31m-    public void path(View view){[m
+[31m-        startActivity(new Intent(SevenActivity.this,PathActivity.class));[m
+[32m+[m
+[32m+[m[32m    public void minGame(View v)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this, BallActivity.class));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void matrix(View v)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this, MatrixActivity.class));[m
+     }[m
+ [m
+[31m-    public void demo(View view){ startActivity(new Intent(SevenActivity.this,DemoActivity.class));}[m
+ }[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/LocalCacheUtils.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/LocalCacheUtils.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6cade7e[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/LocalCacheUtils.java[m
+[36m@@ -0,0 +1,9 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven.utils;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Created by user on 2016/11/25.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class LocalCacheUtils[m
+[32m+[m[32m{[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/MemoryCacheUtils.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/MemoryCacheUtils.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4e37b11[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/MemoryCacheUtils.java[m
+[36m@@ -0,0 +1,52 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven.utils;[m
+[32m+[m
+[32m+[m[32mimport android.graphics.Bitmap;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m[32mimport android.util.LruCache;[m
+[32m+[m[32mimport com.system.caseandroid.MyApplication;[m
+[32m+[m
+[32m+[m[32m/** 内存缓存[m
+[32m+[m[32m * Created by user on 2016/11/25.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class MemoryCacheUtils[m
+[32m+[m[32m{[m
+[32m+[m[32m    private LruCache<String,Bitmap> mMemorCache;[m
+[32m+[m
+[32m+[m[32m    public MemoryCacheUtils(){[m
+[32m+[m[32m        //得到手机最大允许内存的1/8,即超过指定内存,则开始回收(MyApplication.maxMemory)[m
+[32m+[m[32m        mMemorCache = new LruCache<String,Bitmap>(MyApplication.maxMemory){[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            protected int sizeOf(String key, Bitmap value)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                // 重写此方法来衡量每张图片的大小，默认返回图片数量。[m
+[32m+[m[32m                return value.getByteCount();[m
+[32m+[m[32m            }[m
+[32m+[m[32m        };[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 添加缓存[m
+[32m+[m[32m     * @param key[m
+[32m+[m[32m     * @param bitmap[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public void addBitmapToMemoryCache(String key,Bitmap bitmap){[m
+[32m+[m[32m        //判断如果以后缓存就不缓存了[m
+[32m+[m[32m        if(getBitmapFromMemCache(key) == null){[m
+[32m+[m[32m            Log.e("size",mMemorCache.size()+"        ---------------------------   ");[m
+[32m+[m[32m            mMemorCache.put(key,bitmap);[m
+[32m+[m[32m            Log.e("size",mMemorCache.size()+"        ---------------------------   ");[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 根据key获取bitmap[m
+[32m+[m[32m     * @param key[m
+[32m+[m[32m     * @return[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public Bitmap getBitmapFromMemCache(String key){[m
+[32m+[m[32m        Bitmap bitmap = mMemorCache.get(key);[m
+[32m+[m[32m        return bitmap;[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/MyBitmapCache.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/MyBitmapCache.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f07e651[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/MyBitmapCache.java[m
+[36m@@ -0,0 +1,60 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven.utils;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Created by user on 2016/11/23.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mimport android.graphics.Bitmap;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m[32mimport android.widget.ImageView;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 三级缓存[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class MyBitmapCache[m
+[32m+[m[32m{[m
+[32m+[m[32m    private NetCacheUtils mNetCacheUtils;      //网络缓存[m
+[32m+[m[32m    private LocalCacheUtils mLocalCacheUtils;     //本地缓存[m
+[32m+[m[32m    private MemoryCacheUtils mMemoryCacheUtils;    //内存缓存[m
+[32m+[m[32m    public static MyBitmapCache myBitmapCache;[m
+[32m+[m[32m    public static MyBitmapCache getInstance(){[m
+[32m+[m[32m        if(myBitmapCache == null){[m
+[32m+[m[32m            synchronized (MyBitmapCache.class){[m
+[32m+[m[32m                myBitmapCache = new MyBitmapCache();[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return  myBitmapCache;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public MyBitmapCache(){[m
+[32m+[m[32m        mMemoryCacheUtils = new MemoryCacheUtils();[m
+[32m+[m[32m        mNetCacheUtils = new NetCacheUtils();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     *  显示图片[m
+[32m+[m[32m     * @param url 图片地址[m
+[32m+[m[32m     * @param imageView  控件[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public void disPlay(String url, ImageView imageView){[m
+[32m+[m[32m        imageView.setImageResource(R.mipmap.icon_placeholder);[m
+[32m+[m[32m        if(url == null){[m
+[32m+[m[32m            Log.e("MyBitmapCache","url为null");[m
+[32m+[m[32m            return;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        if(!url.isEmpty()){[m
+[32m+[m[32m            Bitmap bitmap = mMemoryCacheUtils.getBitmapFromMemCache(url);[m
+[32m+[m[32m            if(bitmap!=null)[m
+[32m+[m[32m                imageView.setImageBitmap(bitmap);[m
+[32m+[m[32m            else{[m
+[32m+[m[32m                mNetCacheUtils.getBitmapFromNetWorkCache(url,imageView);[m
+[32m+[m[32m                imageView.setImageResource(R.mipmap.icon_placeholder);[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else{[m
+[32m+[m[32m            Log.e("MyBitmapCache","url为空");[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/NetCacheUtils.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/NetCacheUtils.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d19775f[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/utils/NetCacheUtils.java[m
+[36m@@ -0,0 +1,97 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven.utils;[m
+[32m+[m
+[32m+[m[32mimport android.graphics.Bitmap;[m
+[32m+[m[32mimport android.graphics.BitmapFactory;[m
+[32m+[m[32mimport android.os.AsyncTask;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m[32mimport android.widget.ImageView;[m
+[32m+[m
+[32m+[m[32mimport java.io.IOException;[m
+[32m+[m[32mimport java.io.InputStream;[m
+[32m+[m[32mimport java.net.HttpURLConnection;[m
+[32m+[m[32mimport java.net.MalformedURLException;[m
+[32m+[m[32mimport java.net.URL;[m
+[32m+[m[32mimport java.net.URLConnection;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Created by user on 2016/11/25.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class NetCacheUtils[m
+[32m+[m[32m{[m
+[32m+[m[32m    private static final String TAG = "NetCacheUtils";[m
+[32m+[m[32m    private LocalCacheUtils mLocalCacheUtils;     //本地缓存[m
+[32m+[m[32m    private MemoryCacheUtils mMemoryCacheUtils;    //内存缓存[m
+[32m+[m[32m    public NetCacheUtils(){[m
+[32m+[m[32m        mMemoryCacheUtils = new MemoryCacheUtils();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 网络获取图片，并且添加到缓存[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public void getBitmapFromNetWorkCache(String url, ImageView imageView){[m
+[32m+[m[32m        BitmapTask bitmapTask = new BitmapTask();[m
+[32m+[m[32m        bitmapTask.execute(url,imageView);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    class BitmapTask extends AsyncTask<Object,Void,Bitmap>{[m
+[32m+[m[32m        ImageView imageView;[m
+[32m+[m[32m        String url;[m
+[32m+[m[32m        @Override[m
+[32m+[m[32m        protected void onPreExecute()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            super.onPreExecute();[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        @Override[m
+[32m+[m[32m        protected Bitmap doInBackground(Object... params)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            url = (String) params[0];[m
+[32m+[m[32m            imageView = (ImageView) params[1];[m
+[32m+[m[32m            return getNetWork(url);[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        @Override[m
+[32m+[m[32m        protected void onPostExecute(Bitmap bitmap)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            super.onPostExecute(bitmap);[m
+[32m+[m[32m            if(bitmap!=null){[m
+[32m+[m[32m                imageView.setImageBitmap(bitmap);[m
+[32m+[m[32m                mMemoryCacheUtils.addBitmapToMemoryCache(url,bitmap);[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 网络请求图片地址[m
+[32m+[m[32m     * @param path[m
+[32m+[m[32m     * @return[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public Bitmap getNetWork(String path){[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            URL url = new URL(path);[m
+[32m+[m[32m            URLConnection connection = url.openConnection();[m
+[32m+[m[32m            connection.setReadTimeout(30000);[m
+[32m+[m[32m            connection.setConnectTimeout(30000);[m
+[32m+[m[32m            connection.connect();[m
+[32m+[m[32m            InputStream inputStream = connection.getInputStream();[m
+[32m+[m[32m            return BitmapFactory.decodeStream(inputStream);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch (MalformedURLException e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            e.printStackTrace();[m
+[32m+[m[32m            Log.e(TAG,e.getMessage()+" ");[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch (IOException e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            e.printStackTrace();[m
+[32m+[m[32m            Log.e(TAG,e.getMessage()+" ");[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return null;[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/DrawView.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/DrawView.java[m
+[1mindex 29f47fe..5c39c4c 100644[m
+[1m--- a/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/DrawView.java[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/DrawView.java[m
+[36m@@ -19,7 +19,6 @@[m [mpublic class DrawView extends View[m
+     Bitmap cacheBitmap = null;[m
+     //定义cacheBitmap上的Canvas对象[m
+     private Canvas cacheCanvas = null;[m
+[31m-    private Canvas c;[m
+     public DrawView(Context context, int width,int height)[m
+     {[m
+         super(context);[m
+[36m@@ -31,6 +30,7 @@[m [mpublic class DrawView extends View[m
+         //设置画笔的颜色[m
+         paint = new Paint(Paint.DITHER_FLAG);[m
+         paint.setColor(Color.RED);[m
+[32m+[m
+         // 设置画笔风格[m
+         paint.setStyle(Paint.Style.STROKE);[m
+         paint.setStrokeWidth(1);[m
+[36m@@ -69,43 +69,14 @@[m [mpublic class DrawView extends View[m
+     protected void onDraw(Canvas canvas)[m
+     {[m
+         super.onDraw(canvas);[m
+[31m-        this.c = canvas;[m
+         Paint bmpPaint = new Paint();[m
+         canvas.drawBitmap(cacheBitmap,0,0,bmpPaint);[m
+         canvas.drawPath(path,paint);[m
+     }[m
+ [m
+     public void clearCanvas(int width,int height){[m
+[31m-        c.restore();[m
+[31m-//        float f = paint.getStrokeWidth();[m
+[31m-//        paint = new Paint();[m
+[31m-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));[m
+[31m-//        cacheCanvas.drawPaint(paint);[m
+[31m-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));[m
+[31m-//[m
+[31m-//[m
+[31m-//        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);[m
+[31m-//        cacheCanvas = new Canvas();[m
+[31m-//        paint = new Paint(Paint.DITHER_FLAG);[m
+[31m-//        cacheCanvas.setBitmap(cacheBitmap);[m
+[31m-//        // 设置画笔风格[m
+[31m-//        paint.setStyle(Paint.Style.STROKE);[m
+[31m-//        paint.setAntiAlias(true);[m
+[31m-//        paint.setDither(true);[m
+[31m-//        paint.setStrokeWidth(f);[m
+[31m-            invalidate();[m
+[31m-//        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);[m
+[31m-//        cacheCanvas = new Canvas();[m
+[31m-//        path = new Path();[m
+[31m-//        cacheCanvas.setBitmap(cacheBitmap);[m
+[31m-//        //设置画笔的颜色[m
+[31m-//        paint = new Paint(Paint.DITHER_FLAG);[m
+[31m-//        paint.setColor(Color.RED);[m
+[31m-//        // 设置画笔风格[m
+[31m-//        paint.setStyle(Paint.Style.STROKE);[m
+[31m-//        paint.setStrokeWidth(1);[m
+[31m-//        //反锯齿[m
+[31m-//        paint.setAntiAlias(true);[m
+[31m-//        paint.setDither(true);[m
+[32m+[m[32m        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);[m
+[32m+[m[32m        cacheCanvas.setBitmap(cacheBitmap);[m
+[32m+[m[32m        invalidate();[m
+     }[m
+ }[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/GameView.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/GameView.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7bc6952[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/GameView.java[m
+[36m@@ -0,0 +1,68 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven.widget;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.graphics.Canvas;[m
+[32m+[m[32mimport android.graphics.Color;[m
+[32m+[m[32mimport android.graphics.Paint;[m
+[32m+[m[32mimport android.util.DisplayMetrics;[m
+[32m+[m[32mimport android.view.Display;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m
+[32m+[m[32mimport java.util.Random;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Created by user on 2016/10/20.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class GameView extends View[m
+[32m+[m[32m{[m
+[32m+[m[32m    public Paint paint;[m
+[32m+[m[32m    // 游戏是否结束的旗标[m
+[32m+[m[32m    private boolean isLose = false;[m
+[32m+[m[32m    public DisplayMetrics displayMetrics;[m
+[32m+[m[32m    //球拍的垂直位置[m
+[32m+[m[32m    public int racketY;[m
+[32m+[m[32m    //定义球拍的高度和宽度[m
+[32m+[m[32m    private final int RACKET_HEIGHT = 30;[m
+[32m+[m[32m    public final int RACKET_WIDTH = 30;[m
+[32m+[m
+[32m+[m[32m    //小球的大小[m
+[32m+[m[32m    private final int BALL_SIZE = 16;[m
+[32m+[m
+[32m+[m[32m    //小球纵向的运行速度[m
+[32m+[m[32m    private int ySpeed = 15;[m
+[32m+[m
+[32m+[m[32m    Random rand = new Random();[m
+[32m+[m[32m    private int ballX = rand.nextInt(200) + 20;[m
+[32m+[m[32m    private int ballY = rand.nextInt(10) + 10;[m
+[32m+[m[32m    public int racketX = rand.nextInt(200);[m
+[32m+[m
+[32m+[m[32m    public GameView(Context context,Display display)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super(context);[m
+[32m+[m[32m        paint = new Paint();[m
+[32m+[m[32m        paint.setStyle(Paint.Style.FILL);[m
+[32m+[m[32m        paint.setAntiAlias(true);[m
+[32m+[m[32m        displayMetrics = new DisplayMetrics();[m
+[32m+[m[32m        display.getMetrics(displayMetrics);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onDraw(Canvas canvas)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onDraw(canvas);[m
+[32m+[m[32m        if(isLose){[m
+[32m+[m[32m            paint.setColor(Color.RED);[m
+[32m+[m[32m            paint.setTextSize(40);[m
+[32m+[m[32m            canvas.drawText("游戏已结束",displayMetrics.widthPixels/2-100,200,paint);[m
+[32m+[m[32m        }else{[m
+[32m+[m[32m            //设置颜色，并绘制小球[m
+[32m+[m[32m            paint.setColor(Color.rgb(255,0,0));[m
+[32m+[m[32m            canvas.drawCircle(ballX,ballY,BALL_SIZE,paint);[m
+[32m+[m
+[32m+[m[32m            //设置颜色，并绘制球拍[m
+[32m+[m[32m            paint.setColor(Color.rgb(80,80,200));[m
+[32m+[m[32m            canvas.drawRect(racketX,racketY,racketX+RACKET_WIDTH,racketY+RACKET_HEIGHT,paint);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/MyMatrix.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/MyMatrix.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9228357[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/MyMatrix.java[m
+[36m@@ -0,0 +1,63 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven.widget;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.graphics.Bitmap;[m
+[32m+[m[32mimport android.graphics.Canvas;[m
+[32m+[m[32mimport android.graphics.Matrix;[m
+[32m+[m[32mimport android.graphics.drawable.BitmapDrawable;[m
+[32m+[m[32mimport android.util.AttributeSet;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m[32mimport android.view.KeyEvent;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Created by user on 2016/11/18.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class MyMatrix extends View[m
+[32m+[m[32m{[m
+[32m+[m[32m    private Bitmap bitmap;[m
+[32m+[m[32m    private int width,height;[m
+[32m+[m[32m    public boolean isScale = false;[m
+[32m+[m[32m    private Matrix matrix;[m
+[32m+[m[32m    public float sx = 0f;[m
+[32m+[m[32m    public float scale = 1f;[m
+[32m+[m
+[32m+[m[32m    public MyMatrix(Context context)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super(context);[m
+[32m+[m[32m        Log.e("MyMatrix","1111111111111111111111111111111");[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public MyMatrix(Context context, AttributeSet attrs)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super(context, attrs);[m
+[32m+[m[32m        Log.e("MyMatrix","22222222222222222222222222222222222");[m
+[32m+[m[32m        bitmap = ((BitmapDrawable)context.getResources().getDrawable(R.mipmap.xiongmao)).getBitmap();[m
+[32m+[m[32m        width = bitmap.getWidth();[m
+[32m+[m[32m        height = bitmap.getHeight();[m
+[32m+[m[32m        matrix = new Matrix();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onDraw(Canvas canvas)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onDraw(canvas);[m
+[32m+[m[32m        //重置Matrix[m
+[32m+[m[32m        matrix.reset();[m
+[32m+[m[32m        if(!isScale){[m
+[32m+[m[32m            //旋转Matrix[m
+[32m+[m[32m            matrix.setSkew(sx,0);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else{[m
+[32m+[m[32m            //缩放Matrix[m
+[32m+[m[32m            matrix.setScale(scale,scale);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        //根据原始位图和Matrix创新新图[m
+[32m+[m[32m        Bitmap bitmap2 = Bitmap.createBitmap(bitmap,0,0,width,height,matrix,true);[m
+[32m+[m[32m        canvas.drawBitmap(bitmap2,matrix,null);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_ball.xml b/CaseAndroid/src/main/res/layout/activity_ball.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..277f640[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_ball.xml[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_ball"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:paddingBottom="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    android:paddingLeft="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingRight="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingTop="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.seven.BallActivity">[m
+[32m+[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_bitmap.xml b/CaseAndroid/src/main/res/layout/activity_bitmap.xml[m
+[1mindex 324064c..ec4f6de 100644[m
+[1m--- a/CaseAndroid/src/main/res/layout/activity_bitmap.xml[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_bitmap.xml[m
+[36m@@ -1,16 +1,12 @@[m
+ <?xml version="1.0" encoding="utf-8"?>[m
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+     xmlns:tools="http://schemas.android.com/tools"[m
+[31m-    android:id="@+id/activity_bitmap"[m
+     android:layout_width="match_parent"[m
+     android:layout_height="match_parent"[m
+     android:orientation="vertical"[m
+     tools:context="com.system.caseandroid.seven.BitmapActivity">[m
+ [m
+[31m-    <ImageView[m
+[31m-        android:layout_width="wrap_content"[m
+[31m-        android:layout_height="wrap_content"[m
+[31m-        android:id="@+id/image_view"/>[m
+[32m+[m
+ [m
+     <Button[m
+         android:layout_width="match_parent"[m
+[36m@@ -18,4 +14,11 @@[m
+         android:textAllCaps="false"[m
+         android:text="获取asses文件下的所有图片"[m
+         android:onClick="btnBitmap"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:id="@+id/btn_bitmap"[m
+[32m+[m[32m        android:text="Bitmap深入理解"/>[m
+[32m+[m
+ </LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_bitmap_assets.xml b/CaseAndroid/src/main/res/layout/activity_bitmap_assets.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..873ed37[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_bitmap_assets.xml[m
+[36m@@ -0,0 +1,16 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical">[m
+[32m+[m[32m    <ImageView[m
+[32m+[m[32m        android:layout_width="wrap_content"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:id="@+id/image_view"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="获取asses文件下的所有图片"[m
+[32m+[m[32m        android:onClick="btnBitmap"/>[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_bitmap_case.xml b/CaseAndroid/src/main/res/layout/activity_bitmap_case.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7524d17[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_bitmap_case.xml[m
+[36m@@ -0,0 +1,50 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_bitmap_case"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.seven.BitmapCaseActivity">[m
+[32m+[m[32m    <ScrollView[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="match_parent">[m
+[32m+[m[32m        <LinearLayout[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="match_parent"[m
+[32m+[m[32m            android:orientation="vertical">[m
+[32m+[m
+[32m+[m[32m            <LinearLayout[m
+[32m+[m[32m                android:layout_width="match_parent"[m
+[32m+[m[32m                android:layout_height="100dp"[m
+[32m+[m[32m                android:orientation="horizontal">[m
+[32m+[m[32m                <Button[m
+[32m+[m[32m                    android:layout_width="0dp"[m
+[32m+[m[32m                    android:layout_weight="1"[m
+[32m+[m[32m                    android:id="@+id/btn_img_size"[m
+[32m+[m[32m                    android:layout_height="wrap_content"[m
+[32m+[m[32m                    android:text="获取图片大小"/>[m
+[32m+[m[32m                <TextView[m
+[32m+[m[32m                    android:layout_width="0dp"[m
+[32m+[m[32m                    android:layout_weight="1"[m
+[32m+[m[32m                    android:layout_height="50dp"[m
+[32m+[m[32m                    android:id="@+id/txt_size"/>[m
+[32m+[m[32m            </LinearLayout>[m
+[32m+[m
+[32m+[m[32m            <LinearLayout[m
+[32m+[m[32m                android:layout_width="match_parent"[m
+[32m+[m[32m                android:layout_height="100dp"[m
+[32m+[m[32m                android:orientation="horizontal">[m
+[32m+[m[32m                <Button[m
+[32m+[m[32m                    android:layout_width="wrap_content"[m
+[32m+[m[32m                    android:id="@+id/btn_img_person"[m
+[32m+[m[32m                    android:layout_height="wrap_content"[m
+[32m+[m[32m                    android:text="获取图片"/>[m
+[32m+[m[32m                <ImageView[m
+[32m+[m[32m                    android:layout_width="wrap_content"[m
+[32m+[m[32m                    android:layout_height="wrap_content"[m
+[32m+[m[32m                    android:id="@+id/ima_photo"/>[m
+[32m+[m[32m            </LinearLayout>[m
+[32m+[m[32m        </LinearLayout>[m
+[32m+[m[32m    </ScrollView>[m
+[32m+[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_matrix.xml b/CaseAndroid/src/main/res/layout/activity_matrix.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..276ef13[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_matrix.xml[m
+[36m@@ -0,0 +1,23 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_matrix"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:paddingBottom="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    android:paddingLeft="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingRight="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingTop="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.seven.MatrixActivity">[m
+[32m+[m[32m    <com.system.caseandroid.seven.widget.MyMatrix[m
+[32m+[m[32m        android:layout_width="wrap_content"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:id="@+id/my_matrix"[m
+[32m+[m[32m        android:layout_centerInParent="true"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:text="打开"[m
+[32m+[m[32m        android:layout_alignParentBottom="true"[m
+[32m+[m[32m        android:onClick="open"/>[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_seven.xml b/CaseAndroid/src/main/res/layout/activity_seven.xml[m
+[1mindex aa42282..e2e2028 100644[m
+[1m--- a/CaseAndroid/src/main/res/layout/activity_seven.xml[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_seven.xml[m
+[36m@@ -33,4 +33,21 @@[m
+         android:text="Path和Paint案例"[m
+         android:textColor="#ffcc3131"[m
+         android:onClick="demo"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="弹球小游戏"[m
+[32m+[m[32m        android:textColor="#ffcc3131"[m
+[32m+[m[32m        android:onClick="minGame"/>[m
+[32m+[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="Matrix用来设置图片旋转、缩放"[m
+[32m+[m[32m        android:textColor="#ffcc3131"[m
+[32m+[m[32m        android:typeface="monospace"[m
+[32m+[m[32m        android:onClick="matrix"/>[m
+[32m+[m
+ </LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/mipmap-xxhdpi/icon_placeholder.png b/CaseAndroid/src/main/res/mipmap-xxhdpi/icon_placeholder.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..652a62c[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/mipmap-xxhdpi/icon_placeholder.png differ
+[1mdiff --git a/CaseAndroid/src/main/res/mipmap-xxhdpi/xiongmao.jpg b/CaseAndroid/src/main/res/mipmap-xxhdpi/xiongmao.jpg[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cc6682c[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/mipmap-xxhdpi/xiongmao.jpg differ
+[1mdiff --git a/CaseAndroid/src/main/res/values/strings.xml b/CaseAndroid/src/main/res/values/strings.xml[m
+[1mindex 5105400..5b71819 100644[m
+[1m--- a/CaseAndroid/src/main/res/values/strings.xml[m
+[1m+++ b/CaseAndroid/src/main/res/values/strings.xml[m
+[36m@@ -23,4 +23,5 @@[m
+     <string name="emboss">浮雕效果</string>[m
+     <string name="clear">清空</string>[m
+ [m
+[32m+[m
+ </resources>[m
+
+[33mcommit 139cad11c3ee521221ba2ea415c83027bd7f6be0[m
+Author: itnoobwt <13753837811@163.com>
+Date:   Thu Oct 20 10:43:38 2016 +0800
+
+    疯狂Android2016-10-20
+
+[1mdiff --git a/.idea/misc.xml b/.idea/misc.xml[m
+[1mindex 95f0f03..1caa136 100644[m
+[1m--- a/.idea/misc.xml[m
+[1m+++ b/.idea/misc.xml[m
+[36m@@ -37,7 +37,7 @@[m
+     <ConfirmationsSetting value="0" id="Add" />[m
+     <ConfirmationsSetting value="0" id="Remove" />[m
+   </component>[m
+[31m-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">[m
+[32m+[m[32m  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">[m
+     <output url="file://$PROJECT_DIR$/build/classes" />[m
+   </component>[m
+   <component name="ProjectType">[m
+[1mdiff --git a/CaseAndroid/build.gradle b/CaseAndroid/build.gradle[m
+[1mindex 31cd386..78abcd7 100644[m
+[1m--- a/CaseAndroid/build.gradle[m
+[1m+++ b/CaseAndroid/build.gradle[m
+[36m@@ -6,7 +6,7 @@[m [mandroid {[m
+ [m
+     defaultConfig {[m
+         applicationId "com.system.caseandroid"[m
+[31m-        minSdkVersion 15[m
+[32m+[m[32m        minSdkVersion 21[m
+         targetSdkVersion 23[m
+         versionCode 1[m
+         versionName "1.0"[m
+[1mdiff --git a/CaseAndroid/src/main/AndroidManifest.xml b/CaseAndroid/src/main/AndroidManifest.xml[m
+[1mindex 0287df2..758b9bc 100644[m
+[1m--- a/CaseAndroid/src/main/AndroidManifest.xml[m
+[1m+++ b/CaseAndroid/src/main/AndroidManifest.xml[m
+[36m@@ -10,6 +10,11 @@[m
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />[m
+     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />[m
+ [m
+[32m+[m[32m    <!-- 电话联系人权限 -->[m
+[32m+[m[32m    <uses-permission android:name="android.permission.READ_CONTACTS" />[m
+[32m+[m[32m    <!-- 电话拨号权限 -->[m
+[32m+[m[32m    <uses-permission android:name="android.permission.CALL_PHONE" />[m
+[32m+[m
+     <application[m
+         android:allowBackup="true"[m
+         android:icon="@mipmap/ic_launcher"[m
+[36m@@ -49,6 +54,22 @@[m
+         <activity android:name=".three.HandlerActivity" />[m
+         <activity android:name=".three.AsyncTaskActivity" />[m
+         <activity android:name=".four.FourMainActivity" />[m
+[32m+[m[32m        <activity android:name=".Fives.FivesMainActivity" />[m
+[32m+[m[32m        <activity android:name=".Fives.SecondActivity" />[m
+[32m+[m[32m        <activity android:name=".Fives.ExtraActivity" />[m
+[32m+[m[32m        <activity android:name=".six.SixMainActivity" />[m
+[32m+[m[32m        <activity android:name=".six.ResouresActivity" />[m
+[32m+[m[32m        <activity android:name=".six.AnimationActivity" />[m
+[32m+[m[32m        <activity android:name=".six.ObjectAnimatorActivity" />[m
+[32m+[m[32m        <activity android:name=".six.OriginalActivity" />[m
+[32m+[m[32m        <activity android:name=".six.CustomActivity" />[m
+[32m+[m[32m        <activity android:name=".six.SoundActivity" />[m
+[32m+[m[32m        <activity android:name=".six.LanguageActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.BitmapActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.SevenActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.DrawActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.PathActivity" />[m
+[32m+[m[32m        <activity android:name=".seven.DemoActivity"></activity>[m
+     </application>[m
+ [m
+ </manifest>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/assets/img/ajax.png b/CaseAndroid/src/main/assets/img/ajax.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3600391[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/img/ajax.png differ
+[1mdiff --git a/CaseAndroid/src/main/assets/img/android.png b/CaseAndroid/src/main/assets/img/android.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a6b1744[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/img/android.png differ
+[1mdiff --git a/CaseAndroid/src/main/assets/img/html.png b/CaseAndroid/src/main/assets/img/html.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..52e77ea[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/img/html.png differ
+[1mdiff --git a/CaseAndroid/src/main/assets/img/java.png b/CaseAndroid/src/main/assets/img/java.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9cc959e[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/img/java.png differ
+[1mdiff --git a/CaseAndroid/src/main/assets/img/java2.png b/CaseAndroid/src/main/assets/img/java2.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c608939[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/img/java2.png differ
+[1mdiff --git a/CaseAndroid/src/main/assets/img/javaee.png b/CaseAndroid/src/main/assets/img/javaee.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..199e6b5[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/img/javaee.png differ
+[1mdiff --git a/CaseAndroid/src/main/assets/img/javaee2.png b/CaseAndroid/src/main/assets/img/javaee2.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..11fcbe6[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/img/javaee2.png differ
+[1mdiff --git a/CaseAndroid/src/main/assets/img/swift.png b/CaseAndroid/src/main/assets/img/swift.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..51d5260[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/img/swift.png differ
+[1mdiff --git a/CaseAndroid/src/main/assets/shot.mp3 b/CaseAndroid/src/main/assets/shot.mp3[m
+[1mnew file mode 100644[m
+[1mindex 0000000..339729a[m
+Binary files /dev/null and b/CaseAndroid/src/main/assets/shot.mp3 differ
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/BaseActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/BaseActivity.java[m
+[1mindex c02f456..58b7c9e 100644[m
+[1m--- a/CaseAndroid/src/main/java/com/system/caseandroid/BaseActivity.java[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/BaseActivity.java[m
+[36m@@ -2,7 +2,10 @@[m
+ package com.system.caseandroid;[m
+ [m
+ import android.support.annotation.LayoutRes;[m
+[32m+[m[32mimport android.support.v7.app.ActionBar;[m
+ import android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.view.MenuItem;[m
+[32m+[m[32mimport android.view.View;[m
+ import butterknife.ButterKnife;[m
+ [m
+ public class BaseActivity extends AppCompatActivity[m
+[36m@@ -13,5 +16,20 @@[m [mpublic class BaseActivity extends AppCompatActivity[m
+     {[m
+         super.setContentView(layoutResID);[m
+         ButterKnife.bind(this);[m
+[32m+[m[32m        ActionBar actionBar = getSupportActionBar();[m
+[32m+[m[32m        actionBar.setDisplayHomeAsUpEnabled(true);[m
+[32m+[m[32m        actionBar.setTitle("Android");[m
+[32m+[m[32m//        actionBar.setSubtitle("zhangsan");[m
+     }[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public boolean onOptionsItemSelected(MenuItem item)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        if(item.getItemId() == android.R.id.home)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            finish();[m
+[32m+[m[32m            return true;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return super.onOptionsItemSelected(item);[m
+[32m+[m[32m    }[m
+[32m+[m
+ }[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/Fives/ExtraActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/Fives/ExtraActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..008c781[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/Fives/ExtraActivity.java[m
+[36m@@ -0,0 +1,19 @@[m
+[32m+[m[32mpackage com.system.caseandroid.Fives;[m
+[32m+[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Extra属性讲解[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class ExtraActivity extends AppCompatActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_extra);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/Fives/FivesMainActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/Fives/FivesMainActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..17cd213[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/Fives/FivesMainActivity.java[m
+[36m@@ -0,0 +1,35 @@[m
+[32m+[m[32mpackage com.system.caseandroid.Fives;[m
+[32m+[m
+[32m+[m[32mimport android.content.ComponentName;[m
+[32m+[m[32mimport android.content.Intent;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.widget.Button;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mpublic class FivesMainActivity extends AppCompatActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    private Button btn;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_fives_main);[m
+[32m+[m[32m        btn = (Button) findViewById(R.id.btn_intent);[m
+[32m+[m[32m        btn.setOnClickListener(new View.OnClickListener()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void onClick(View v)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                ComponentName comp = new ComponentName(FivesMainActivity.this,SecondActivity.class);[m
+[32m+[m[32m                Intent intent = new Intent();[m
+[32m+[m[32m                intent.setComponent(comp);[m
+[32m+[m[32m                startActivity(intent);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void extra(View v){[m
+[32m+[m[32m        startActivity(new Intent(FivesMainActivity.this,ExtraActivity.class));[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/Fives/SecondActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/Fives/SecondActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..91d487a[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/Fives/SecondActivity.java[m
+[36m@@ -0,0 +1,175 @@[m
+[32m+[m[32mpackage com.system.caseandroid.Fives;[m
+[32m+[m
+[32m+[m[32mimport android.app.Activity;[m
+[32m+[m[32mimport android.content.ComponentName;[m
+[32m+[m[32mimport android.content.CursorLoader;[m
+[32m+[m[32mimport android.content.Intent;[m
+[32m+[m[32mimport android.database.Cursor;[m
+[32m+[m[32mimport android.net.Uri;[m
+[32m+[m[32mimport android.provider.ContactsContract;[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.widget.Button;[m
+[32m+[m[32mimport android.widget.EditText;[m
+[32m+[m[32mimport android.widget.Toast;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 讲解Intent用法、action、data、typ等等......[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class SecondActivity extends AppCompatActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    private Button btn;[m
+[32m+[m[32m    private final int PICK_CONTACT = 0;[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_second);[m
+[32m+[m[32m        //        ComponentName componentName = getIntent().getComponent();[m
+[32m+[m[32m        //        Toast.makeText(this, componentName.getPackageName()+"    "+componentName.getClassName(),[m
+[32m+[m[32m        //                Toast.LENGTH_SHORT).show();[m
+[32m+[m[32m        btn = (Button) findViewById(R.id.bn);[m
+[32m+[m[32m        btn.setOnClickListener(new View.OnClickListener()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void onClick(View v)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                Intent intent = new Intent();[m
+[32m+[m[32m                intent.setAction(Intent.ACTION_GET_CONTENT);[m
+[32m+[m[32m                intent.setType("vnd.android.cursor.item/phone");[m
+[32m+[m[32m                startActivityForResult(intent, PICK_CONTACT);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m[32m    }[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onActivityResult(int requestCode, int resultCode, Intent data)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onActivityResult(requestCode, resultCode, data);[m
+[32m+[m[32m        switch (requestCode)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            case (PICK_CONTACT):[m
+[32m+[m[32m                if (resultCode == Activity.RESULT_OK)[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    Uri contactData = data.getData();[m
+[32m+[m[32m                    CursorLoader cursorLoader = new CursorLoader(this, contactData, null, null, null, null);[m
+[32m+[m[32m                    Cursor cursor = cursorLoader.loadInBackground();[m
+[32m+[m[32m                    if (cursor.moveToFirst())[m
+[32m+[m[32m                    {[m
+[32m+[m[32m                        String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));[m
+[32m+[m[32m                        //获取联系人的名字[m
+[32m+[m[32m                        String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));[m
+[32m+[m[32m                        String phoneNumber = "次联系人暂未输入电话号码";[m
+[32m+[m[32m                        try[m
+[32m+[m[32m                        {[m
+[32m+[m[32m                            Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,[m
+[32m+[m[32m                                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);[m
+[32m+[m[32m                            if (phones.moveToFirst())[m
+[32m+[m[32m                            {[m
+[32m+[m[32m                                phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));[m
+[32m+[m[32m                            }[m
+[32m+[m[32m                            phones.close();[m
+[32m+[m[32m                        }catch (Exception e){[m
+[32m+[m[32m                            Log.e("error",e.getMessage());[m
+[32m+[m[32m                        }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m                        EditText show = (EditText) findViewById(R.id.show);[m
+[32m+[m[32m                        //显示联系人的名称[m
+[32m+[m[32m                        show.setText(name);[m
+[32m+[m[32m                        EditText phone = (EditText) findViewById(R.id.phone);[m
+[32m+[m[32m                        phone.setText(phoneNumber);[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                    cursor.close();[m
+[32m+[m[32m                }[m
+[32m+[m[32m                break;[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void home(View v){[m
+[32m+[m[32m        Intent intent = new Intent();[m
+[32m+[m[32m        intent.setAction(Intent.ACTION_MAIN);[m
+[32m+[m[32m        intent.addCategory(Intent.CATEGORY_HOME);[m
+[32m+[m[32m        startActivity(intent);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 同一个Intent对象使用type、data第二者会覆盖第一者value值[m
+[32m+[m[32m     * @param v[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public void dataOrtype(View v){[m
+[32m+[m[32m        Intent intent = new Intent();[m
+[32m+[m[32m        intent.setType("abc/xyz");[m
+[32m+[m[32m        intent.setData(Uri.parse("lee://www.fkjava.org:8888/test"));[m
+[32m+[m[32m        Toast.makeText(this, intent.toString(), Toast.LENGTH_SHORT).show();[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void dataOrtype1(View v){[m
+[32m+[m[32m        Intent intent = new Intent();[m
+[32m+[m[32m        intent.setData(Uri.parse("lee://www.fkjava.org:8888/test"));[m
+[32m+[m[32m        intent.setType("abc/xyz");[m
+[32m+[m[32m        Toast.makeText(this, intent.toString(), Toast.LENGTH_SHORT).show();[m
+[32m+[m[32m    }[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 同一个Intent对象使用DataAndType并存value值[m
+[32m+[m[32m     *[m
+[32m+[m[32m     * @param v[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public void dataAndtype(View v){[m
+[32m+[m[32m        Intent intent = new Intent();[m
+[32m+[m[32m        intent.setDataAndType(Uri.parse("lee://www.fkjava.org:8888/test"),"abc/xyz");[m
+[32m+[m[32m        Toast.makeText(this, intent.toString(), Toast.LENGTH_SHORT).show();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * 使用Action、Data属性启动系统Activity[m
+[32m+[m[32m     * @param v[m
+[32m+[m[32m     */[m
+[32m+[m[32m    public void actionAndData(View v){[m
+[32m+[m[32m        Intent intent = new Intent();[m
+[32m+[m[32m        String data = "http://www.crazyit.org";[m
+[32m+[m[32m        //根据指定字符串解析Uri对象[m
+[32m+[m[32m        Uri uri = Uri.parse(data);[m
+[32m+[m[32m        //为Intent设置Action属性[m
+[32m+[m[32m        intent.setAction(Intent.ACTION_VIEW);[m
+[32m+[m[32m        //设置Data属性[m
+[32m+[m[32m        intent.setData(uri);[m
+[32m+[m[32m        startActivity(intent);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void edit(View v){[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            Intent intent = new Intent();[m
+[32m+[m[32m            String data = "content://com.android.contacts/contacts/1";[m
+[32m+[m[32m            //根据指定字符串解析Uri对象[m
+[32m+[m[32m            Uri uri = Uri.parse(data);[m
+[32m+[m[32m            //为Intent设置Action属性（动作为：编辑）[m
+[32m+[m[32m            intent.setAction(Intent.ACTION_EDIT);[m
+[32m+[m[32m            //设置Data属性[m
+[32m+[m[32m            intent.setData(uri);[m
+[32m+[m[32m            startActivity(intent);[m
+[32m+[m[32m        }catch (Exception e){[m
+[32m+[m[32m            Log.e("error",e.getMessage());[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void call(View v){[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            Intent intent = new Intent();[m
+[32m+[m[32m            String data = "tel:136888888";[m
+[32m+[m[32m            //根据指定字符串解析Uri对象[m
+[32m+[m[32m            Uri uri = Uri.parse(data);[m
+[32m+[m[32m            //为Intent设置Action属性（动作为：拨号）[m
+[32m+[m[32m            intent.setAction(Intent.ACTION_CALL);[m
+[32m+[m[32m            //设置Data属性[m
+[32m+[m[32m            intent.setData(uri);[m
+[32m+[m[32m            startActivity(intent);[m
+[32m+[m[32m        }catch (Exception e){[m
+[32m+[m[32m            Log.e("error",e.getMessage());[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/MainActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/MainActivity.java[m
+[1mindex 8cc8acf..5bdb98f 100644[m
+[1m--- a/CaseAndroid/src/main/java/com/system/caseandroid/MainActivity.java[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/MainActivity.java[m
+[36m@@ -8,14 +8,20 @@[m [mimport android.support.v7.widget.DefaultItemAnimator;[m
+ import android.support.v7.widget.LinearLayoutManager;[m
+ import android.support.v7.widget.OrientationHelper;[m
+ import android.support.v7.widget.RecyclerView;[m
+[32m+[m[32mimport android.view.KeyEvent;[m
+[32m+[m[32mimport android.view.MenuItem;[m
+ import android.view.View;[m
+ import android.widget.Toast;[m
+ import butterknife.BindView;[m
+[32m+[m[32mimport com.system.caseandroid.Fives.FivesMainActivity;[m
+ import com.system.caseandroid.adapter.DividerGridItemDecoration;[m
+ import com.system.caseandroid.adapter.MainAdapter;[m
+ import com.system.caseandroid.four.FourMainActivity;[m
+ import com.system.caseandroid.one.OneMainActivity;[m
+ import com.system.caseandroid.one.TableActivity;[m
+[32m+[m[32mimport com.system.caseandroid.seven.BitmapActivity;[m
+[32m+[m[32mimport com.system.caseandroid.seven.SevenActivity;[m
+[32m+[m[32mimport com.system.caseandroid.six.SixMainActivity;[m
+ import com.system.caseandroid.three.ThreeMainActivity;[m
+ [m
+ import java.util.ArrayList;[m
+[36m@@ -55,6 +61,15 @@[m [mpublic class MainActivity extends BaseActivity[m
+                     case 3:[m
+                         startActivity(new Intent(MainActivity.this, FourMainActivity.class));[m
+                         break;[m
+[32m+[m[32m                    case 4:[m
+[32m+[m[32m                        startActivity(new Intent(MainActivity.this, FivesMainActivity.class));[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                    case 5:[m
+[32m+[m[32m                        startActivity(new Intent(MainActivity.this, SixMainActivity.class));[m
+[32m+[m[32m                        break;[m
+[32m+[m[32m                    case 6:[m
+[32m+[m[32m                        startActivity(new Intent(MainActivity.this, SevenActivity.class));[m
+[32m+[m[32m                        break;[m
+                 }[m
+ //                if(list.get(position) == 1){[m
+ //                    startActivity(new Intent(MainActivity.this, OneMainActivity.class));[m
+[36m@@ -76,4 +91,40 @@[m [mpublic class MainActivity extends BaseActivity[m
+         }[m
+     }[m
+ [m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public boolean onOptionsItemSelected(MenuItem item)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        if(item.getItemId() == android.R.id.home)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            return onKeyDown(android.R.id.home,null);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return super.onOptionsItemSelected(item);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    private long exitTime = 0;[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public boolean onKeyDown(int keyCode, KeyEvent event) {[m
+[32m+[m[32m        if(keyCode == android.R.id.home){[m
+[32m+[m[32m            if((System.currentTimeMillis()-exitTime) > 2000){[m
+[32m+[m[32m                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();[m
+[32m+[m[32m                exitTime = System.currentTimeMillis();[m
+[32m+[m[32m            } else {[m
+[32m+[m[32m                finish();[m
+[32m+[m[32m                System.exit(0);[m
+[32m+[m[32m            }[m
+[32m+[m[32m            return true;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){[m
+[32m+[m[32m            if((System.currentTimeMillis()-exitTime) > 2000){[m
+[32m+[m[32m                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();[m
+[32m+[m[32m                exitTime = System.currentTimeMillis();[m
+[32m+[m[32m            } else {[m
+[32m+[m[32m                finish();[m
+[32m+[m[32m                System.exit(0);[m
+[32m+[m[32m            }[m
+[32m+[m[32m            return true;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return super.onKeyDown(keyCode, event);[m
+[32m+[m[32m    }[m
+ }[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/four/FourMainActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/four/FourMainActivity.java[m
+[1mindex 8b92791..014362b 100644[m
+[1m--- a/CaseAndroid/src/main/java/com/system/caseandroid/four/FourMainActivity.java[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/four/FourMainActivity.java[m
+[36m@@ -1,5 +1,6 @@[m
+ package com.system.caseandroid.four;[m
+ [m
+[32m+[m[32mimport android.content.ComponentName;[m
+ import android.os.Bundle;[m
+ import android.support.v7.app.AppCompatActivity;[m
+ import com.system.caseandroid.R;[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..16beac8[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/BitmapActivity.java[m
+[36m@@ -0,0 +1,71 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.content.res.AssetManager;[m
+[32m+[m[32mimport android.graphics.BitmapFactory;[m
+[32m+[m[32mimport android.graphics.drawable.BitmapDrawable;[m
+[32m+[m[32mimport android.media.Image;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.widget.ImageView;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mimport java.io.IOException;[m
+[32m+[m[32mimport java.io.InputStream;[m
+[32m+[m
+[32m+[m[32mpublic class BitmapActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    String[] images = null;[m
+[32m+[m[32m    AssetManager assets = null;[m
+[32m+[m[32m    int currentImg = 0;[m
+[32m+[m[32m    ImageView imageview;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_bitmap);[m
+[32m+[m[32m        imageview = (ImageView)findViewById(R.id.image_view);[m
+[32m+[m
+[32m+[m[32m        assets = getAssets();[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            //在assets/img文件下找图片[m
+[32m+[m[32m            images = assets.list("img");[m
+[32m+[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch (IOException e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            e.printStackTrace();[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void btnBitmap(View view){[m
+[32m+[m[32m        if(currentImg >= images.length){[m
+[32m+[m[32m            currentImg = 0;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        while (!images[currentImg].endsWith(".png")&&!images[currentImg].endsWith(".jpg")&&!images[currentImg][m
+[32m+[m[32m                .endsWith(".gif")){[m
+[32m+[m[32m            currentImg++;[m
+[32m+[m[32m            if(currentImg >= images.length){[m
+[32m+[m[32m                currentImg = 0;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m        InputStream assetFile = null;[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            assetFile = assets.open("img/"+images[currentImg++]);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch (IOException e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            e.printStackTrace();[m
+[32m+[m[32m        }[m
+[32m+[m[32m        BitmapDrawable bitmapDrawable = (BitmapDrawable) imageview.getDrawable();[m
+[32m+[m[32m        // 如果图片还未回收，先强制回收该图片[m
+[32m+[m[32m        if(bitmapDrawable!= null && !bitmapDrawable.getBitmap().isRecycled()){[m
+[32m+[m[32m            bitmapDrawable.getBitmap().recycle();[m
+[32m+[m[32m        }[m
+[32m+[m[32m        // 改变ImageView显示的图片[m
+[32m+[m[32m        imageview.setImageBitmap(BitmapFactory.decodeStream(assetFile));[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/DemoActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/DemoActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..64b1ce5[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/DemoActivity.java[m
+[36m@@ -0,0 +1,87 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.graphics.BlurMaskFilter;[m
+[32m+[m[32mimport android.graphics.Color;[m
+[32m+[m[32mimport android.graphics.EmbossMaskFilter;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.util.DisplayMetrics;[m
+[32m+[m[32mimport android.view.Menu;[m
+[32m+[m[32mimport android.view.MenuInflater;[m
+[32m+[m[32mimport android.view.MenuItem;[m
+[32m+[m[32mimport android.widget.LinearLayout;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m[32mimport com.system.caseandroid.seven.widget.DrawView;[m
+[32m+[m
+[32m+[m[32mpublic class DemoActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    EmbossMaskFilter emboss;[m
+[32m+[m[32m    BlurMaskFilter blur;[m
+[32m+[m[32m    DrawView drawView;[m
+[32m+[m[32m    DisplayMetrics displayMetrics;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        LinearLayout linearLayout = new LinearLayout(this);[m
+[32m+[m[32m        displayMetrics = new DisplayMetrics();[m
+[32m+[m[32m        //获取创建的宽度和高度[m
+[32m+[m[32m        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);[m
+[32m+[m[32m        drawView = new DrawView(this,displayMetrics.widthPixels,displayMetrics.heightPixels);[m
+[32m+[m[32m        linearLayout.addView(drawView);[m
+[32m+[m[32m        setContentView(linearLayout);[m
+[32m+[m
+[32m+[m[32m        emboss = new EmbossMaskFilter(new float[]{15.f,1.5f,1.5f}[m
+[32m+[m[32m        ,0.f,6,4.2f);[m
+[32m+[m[32m        blur = new BlurMaskFilter(8,BlurMaskFilter.Blur.NORMAL);  //线条模糊[m
+[32m+[m[32m    }[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    // 负责创建选项菜单[m
+[32m+[m[32m    public boolean onCreateOptionsMenu(Menu menu)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        MenuInflater inflator = new MenuInflater(this);[m
+[32m+[m[32m        // 装载R.menu.my_menu对应的菜单，并添加到menu中[m
+[32m+[m[32m        inflator.inflate(R.menu.menu_main, menu);[m
+[32m+[m[32m        return super.onCreateOptionsMenu(menu);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    // 菜单项被单击后的回调方法[m
+[32m+[m[32m    public boolean onOptionsItemSelected(MenuItem mi)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        // 判断单击的是哪个菜单项，并有针对性地作出响应[m
+[32m+[m[32m        switch (mi.getItemId())[m
+[32m+[m[32m        {[m
+[32m+[m[32m            case R.id.red:[m
+[32m+[m[32m                drawView.paint.setColor(Color.RED);[m
+[32m+[m[32m                mi.setChecked(true);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case R.id.green:[m
+[32m+[m[32m                drawView.paint.setColor(Color.GREEN);[m
+[32m+[m[32m                mi.setChecked(true);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case R.id.blue:[m
+[32m+[m[32m                drawView.paint.setColor(Color.BLUE);[m
+[32m+[m[32m                mi.setChecked(true);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case R.id.width_1:[m
+[32m+[m[32m                drawView.paint.setStrokeWidth(1);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case R.id.width_3:[m
+[32m+[m[32m                drawView.paint.setStrokeWidth(3);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case R.id.width_5:[m
+[32m+[m[32m                drawView.paint.setStrokeWidth(5);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case R.id.blur:[m
+[32m+[m[32m                drawView.paint.setMaskFilter(blur);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case R.id.emboss:[m
+[32m+[m[32m                drawView.paint.setMaskFilter(emboss);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case R.id.clear:[m
+[32m+[m[32m                drawView.clearCanvas(displayMetrics.widthPixels,displayMetrics.heightPixels);[m
+[32m+[m[32m                break;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return true;[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/DrawActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/DrawActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f1ad151[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/DrawActivity.java[m
+[36m@@ -0,0 +1,21 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 绘图：Canvas、Paint[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class DrawActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_draw);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/PathActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/PathActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..dad796b[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/PathActivity.java[m
+[36m@@ -0,0 +1,83 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.graphics.*;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.util.AttributeSet;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m
+[32m+[m[32mpublic class PathActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(new MyView(PathActivity.this));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    class MyView extends View{[m
+[32m+[m
+[32m+[m[32m        private float phase;[m
+[32m+[m[32m        PathEffect[] effects = new PathEffect[7];[m
+[32m+[m[32m        int[] colors;[m
+[32m+[m[32m        private Paint paint;[m
+[32m+[m[32m        private Path path;[m
+[32m+[m[32m        public MyView(Context context )[m
+[32m+[m[32m        {[m
+[32m+[m[32m            super(context);[m
+[32m+[m[32m            paint = new Paint();[m
+[32m+[m[32m            paint.setStyle(Paint.Style.STROKE);[m
+[32m+[m[32m            paint.setStrokeWidth(4);[m
+[32m+[m[32m            //创建并初始化Path[m
+[32m+[m[32m            path = new Path();[m
+[32m+[m[32m            path.moveTo(0,0);[m
+[32m+[m[32m            for (int i = 1; i<=40; i++){[m
+[32m+[m[32m                path.lineTo(i*20,(float)Math.random()*60);[m
+[32m+[m[32m            }[m
+[32m+[m[32m            //初始化7颜色[m
+[32m+[m[32m            colors = new int[]{Color.BLACK,Color.BLUE,Color.CYAN,Color.GREEN[m
+[32m+[m[32m            ,Color.MAGENTA,Color.RED,Color.YELLOW};[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m        @Override[m
+[32m+[m[32m        protected void onDraw(Canvas canvas)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            super.onDraw(canvas);[m
+[32m+[m[32m            //将北京填充为白色[m
+[32m+[m[32m            canvas.drawColor(Color.LTGRAY);[m
+[32m+[m[32m            //------------- 下面开始初始化7中路径效果   -----------------[m
+[32m+[m[32m            //不适用路径效果[m
+[32m+[m[32m            effects[0] = null;[m
+[32m+[m[32m            //使用CornerPathEffect路径效果[m
+[32m+[m[32m            effects[1] = new CornerPathEffect(10);[m
+[32m+[m[32m            //初始化DiscretePathEffect[m
+[32m+[m[32m            effects[2] = new DiscretePathEffect(3.0f,5.0f);[m
+[32m+[m[32m            //初始化DashPathEffect[m
+[32m+[m[32m            effects[3] = new DashPathEffect(new float[]{20,10,5,10},phase);[m
+[32m+[m[32m            //初始化PathDashPathEffect[m
+[32m+[m[32m            Path p = new Path();[m
+[32m+[m[32m            p.addRect(0,0,8,8, Path.Direction.CCW);[m
+[32m+[m[32m            effects[4] = new PathDashPathEffect(p,12,phase,PathDashPathEffect.Style.ROTATE);[m
+[32m+[m[32m            //初始化ComposePathEffect[m
+[32m+[m[32m            effects[5] = new ComposePathEffect(effects[2],effects[4]);[m
+[32m+[m[32m            effects[6] = new SumPathEffect(effects[4],effects[3]);[m
+[32m+[m[32m            //将画布移动到（8，8）处开始绘制[m
+[32m+[m[32m            canvas.translate(8,8);[m
+[32m+[m[32m            //依次使用7种不同的路径效果、7种不同的颜色来绘制路径[m
+[32m+[m[32m            for (int i = 0; i< effects.length; i++){[m
+[32m+[m[32m                paint.setPathEffect(effects[i]);[m
+[32m+[m[32m                paint.setColor(colors[i]);[m
+[32m+[m[32m                canvas.drawPath(path,paint);[m
+[32m+[m[32m                canvas.translate(0,60);[m
+[32m+[m[32m            }[m
+[32m+[m[32m            //改变phase值，形成动画效果[m
+[32m+[m[32m            phase += 1;[m
+[32m+[m[32m            invalidate();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/SevenActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/SevenActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f82ad06[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/SevenActivity.java[m
+[36m@@ -0,0 +1,30 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven;[m
+[32m+[m
+[32m+[m[32mimport android.content.Intent;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mpublic class SevenActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_seven);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void bitmap(View view){[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this,BitmapActivity.class));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void draw(View view){[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this,DrawActivity.class));[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void path(View view){[m
+[32m+[m[32m        startActivity(new Intent(SevenActivity.this,PathActivity.class));[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void demo(View view){ startActivity(new Intent(SevenActivity.this,DemoActivity.class));}[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/DrawView.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/DrawView.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..29f47fe[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/DrawView.java[m
+[36m@@ -0,0 +1,111 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven.widget;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.graphics.*;[m
+[32m+[m[32mimport android.view.MotionEvent;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m
+[32m+[m[32m/**绘制，双缓冲技术[m
+[32m+[m[32m * Created by user on 2016/10/17.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class DrawView extends View[m
+[32m+[m[32m{[m
+[32m+[m[32m    float preX;[m
+[32m+[m[32m    float preY;[m
+[32m+[m[32m    private Path path;[m
+[32m+[m[32m    public Paint paint;[m
+[32m+[m[32m    //定义内存中的一个图片，该图片将作为缓冲区[m
+[32m+[m[32m    Bitmap cacheBitmap = null;[m
+[32m+[m[32m    //定义cacheBitmap上的Canvas对象[m
+[32m+[m[32m    private Canvas cacheCanvas = null;[m
+[32m+[m[32m    private Canvas c;[m
+[32m+[m[32m    public DrawView(Context context, int width,int height)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super(context);[m
+[32m+[m[32m        //创建一个该View具有项目大小的缓冲区[m
+[32m+[m[32m        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);[m
+[32m+[m[32m        cacheCanvas = new Canvas();[m
+[32m+[m[32m        path = new Path();[m
+[32m+[m[32m        cacheCanvas.setBitmap(cacheBitmap);[m
+[32m+[m[32m        //设置画笔的颜色[m
+[32m+[m[32m        paint = new Paint(Paint.DITHER_FLAG);[m
+[32m+[m[32m        paint.setColor(Color.RED);[m
+[32m+[m[32m        // 设置画笔风格[m
+[32m+[m[32m        paint.setStyle(Paint.Style.STROKE);[m
+[32m+[m[32m        paint.setStrokeWidth(1);[m
+[32m+[m[32m        //反锯齿[m
+[32m+[m[32m        paint.setAntiAlias(true);[m
+[32m+[m[32m        paint.setDither(true);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public boolean onTouchEvent(MotionEvent event)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        float x = event.getX();[m
+[32m+[m[32m        float y = event.getY();[m
+[32m+[m[32m        switch (event.getAction()){[m
+[32m+[m[32m            case MotionEvent.ACTION_DOWN:[m
+[32m+[m[32m                path.moveTo(x,y);[m
+[32m+[m[32m                preX = x;[m
+[32m+[m[32m                preY = y;[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case MotionEvent.ACTION_MOVE:[m
+[32m+[m[32m                path.quadTo(preX,preY,x,y);[m
+[32m+[m[32m                preX = x;[m
+[32m+[m[32m                preY = y;[m
+[32m+[m[32m                break;[m
+[32m+[m[32m            case MotionEvent.ACTION_UP:[m
+[32m+[m[32m                //讲cacheBitmap绘制到该View组件上[m
+[32m+[m[32m                cacheCanvas.drawPath(path,paint);[m
+[32m+[m[32m                path.reset();  //清除掉path里的线条和曲线[m
+[32m+[m[32m                break;[m
+[32m+[m[32m        }[m
+[32m+[m[32m        invalidate();[m
+[32m+[m[32m        return true;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onDraw(Canvas canvas)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onDraw(canvas);[m
+[32m+[m[32m        this.c = canvas;[m
+[32m+[m[32m        Paint bmpPaint = new Paint();[m
+[32m+[m[32m        canvas.drawBitmap(cacheBitmap,0,0,bmpPaint);[m
+[32m+[m[32m        canvas.drawPath(path,paint);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void clearCanvas(int width,int height){[m
+[32m+[m[32m        c.restore();[m
+[32m+[m[32m//        float f = paint.getStrokeWidth();[m
+[32m+[m[32m//        paint = new Paint();[m
+[32m+[m[32m//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));[m
+[32m+[m[32m//        cacheCanvas.drawPaint(paint);[m
+[32m+[m[32m//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));[m
+[32m+[m[32m//[m
+[32m+[m[32m//[m
+[32m+[m[32m//        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);[m
+[32m+[m[32m//        cacheCanvas = new Canvas();[m
+[32m+[m[32m//        paint = new Paint(Paint.DITHER_FLAG);[m
+[32m+[m[32m//        cacheCanvas.setBitmap(cacheBitmap);[m
+[32m+[m[32m//        // 设置画笔风格[m
+[32m+[m[32m//        paint.setStyle(Paint.Style.STROKE);[m
+[32m+[m[32m//        paint.setAntiAlias(true);[m
+[32m+[m[32m//        paint.setDither(true);[m
+[32m+[m[32m//        paint.setStrokeWidth(f);[m
+[32m+[m[32m            invalidate();[m
+[32m+[m[32m//        cacheBitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);[m
+[32m+[m[32m//        cacheCanvas = new Canvas();[m
+[32m+[m[32m//        path = new Path();[m
+[32m+[m[32m//        cacheCanvas.setBitmap(cacheBitmap);[m
+[32m+[m[32m//        //设置画笔的颜色[m
+[32m+[m[32m//        paint = new Paint(Paint.DITHER_FLAG);[m
+[32m+[m[32m//        paint.setColor(Color.RED);[m
+[32m+[m[32m//        // 设置画笔风格[m
+[32m+[m[32m//        paint.setStyle(Paint.Style.STROKE);[m
+[32m+[m[32m//        paint.setStrokeWidth(1);[m
+[32m+[m[32m//        //反锯齿[m
+[32m+[m[32m//        paint.setAntiAlias(true);[m
+[32m+[m[32m//        paint.setDither(true);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/MyView.java b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/MyView.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5443cc7[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/seven/widget/MyView.java[m
+[36m@@ -0,0 +1,44 @@[m
+[32m+[m[32mpackage com.system.caseandroid.seven.widget;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.graphics.*;[m
+[32m+[m[32mimport android.util.AttributeSet;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Created by user on 2016/10/14.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class MyView extends View[m
+[32m+[m[32m{[m
+[32m+[m[32m    public MyView(Context context, AttributeSet attrs)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super(context, attrs);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onDraw(Canvas canvas)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onDraw(canvas);[m
+[32m+[m[32m        canvas.drawColor(Color.WHITE);[m
+[32m+[m[32m        Paint paint = new Paint();[m
+[32m+[m[32m        paint.setAntiAlias(true);[m
+[32m+[m[32m        paint.setStrokeWidth(4);[m
+[32m+[m[32m        paint.setStyle(Paint.Style.STROKE);[m
+[32m+[m[32m        paint.setColor(Color.BLUE);[m
+[32m+[m[32m        paint.setShadowLayer(25,20,20,Color.GRAY);[m
+[32m+[m[32m        int viewWidth = this.getWidth();[m
+[32m+[m[32m        canvas.drawCircle(viewWidth/10+10,viewWidth/10+10,viewWidth/10,paint);  //圆形[m
+[32m+[m[32m        canvas.drawRect(10,viewWidth/5+20,viewWidth/5+10,viewWidth*2/5+20,paint);//正方形[m
+[32m+[m[32m        canvas.drawRoundRect(10,viewWidth/2+40,10+viewWidth/5,viewWidth*3/5+40,15,15,paint); //绘制圆角矩形[m
+[32m+[m[32m        RectF re11 = new RectF(10, viewWidth * 3 / 5 + 50[m
+[32m+[m[32m                , 10 + viewWidth / 5 ,viewWidth * 7 / 10 + 50);[m
+[32m+[m[32m        canvas.drawOval(re11,paint); //椭圆[m
+[32m+[m
+[32m+[m[32m        Path path = new Path();[m
+[32m+[m[32m        path.moveTo(10,viewWidth*9/10+60);[m
+[32m+[m[32m        path.lineTo(viewWidth/5+10,viewWidth*9/10+60);[m
+[32m+[m[32m        path.lineTo(viewWidth/10+10,viewWidth*7/10+60);[m
+[32m+[m[32m        path.close();[m
+[32m+[m[32m        canvas.drawPath(path,paint); //绘制三角形[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/AnimationActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/AnimationActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..df4618f[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/AnimationActivity.java[m
+[36m@@ -0,0 +1,27 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six;[m
+[32m+[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.view.animation.Animation;[m
+[32m+[m[32mimport android.view.animation.AnimationSet;[m
+[32m+[m[32mimport android.view.animation.AnimationUtils;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 动画[m
+[32m+[m[32m * AnimationDrawable 动画[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class AnimationActivity extends AppCompatActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_animation);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void startAnim(View v){[m
+[32m+[m[32m        v.startAnimation(AnimationUtils.loadAnimation(this,R.anim.my_anim));[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/CustomActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/CustomActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..180f500[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/CustomActivity.java[m
+[36m@@ -0,0 +1,16 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six;[m
+[32m+[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mpublic class CustomActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_custome);[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/LanguageActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/LanguageActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..23e0dc6[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/LanguageActivity.java[m
+[36m@@ -0,0 +1,32 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six;[m
+[32m+[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.widget.TextView;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mimport java.util.Locale;[m
+[32m+[m
+[32m+[m[32mpublic class LanguageActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    private TextView txt;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_language);[m
+[32m+[m[32m        txt = (TextView) findViewById(R.id.language_txt);[m
+[32m+[m[32m        language();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public  void language(){[m
+[32m+[m[32m        Locale[] locales = Locale.getAvailableLocales();[m
+[32m+[m[32m        StringBuilder str = new StringBuilder();[m
+[32m+[m[32m        for ( int i = 0; i<locales.length; i++){[m
+[32m+[m[32m            str.append(locales[i].getDisplayCountry()+" = "+ locales[i].getCountry()+[m
+[32m+[m[32m            "  "+locales[i].getDisplayLanguage()+"  = "+locales[i].getLanguage()+"\n");[m
+[32m+[m[32m        }[m
+[32m+[m[32m        txt.setText(str.toString());[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/ObjectAnimatorActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/ObjectAnimatorActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f667e56[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/ObjectAnimatorActivity.java[m
+[36m@@ -0,0 +1,37 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six;[m
+[32m+[m
+[32m+[m[32mimport android.animation.AnimatorInflater;[m
+[32m+[m[32mimport android.animation.ObjectAnimator;[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.view.animation.AnimationUtils;[m
+[32m+[m[32mimport android.widget.LinearLayout;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mpublic class ObjectAnimatorActivity extends AppCompatActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    private LinearLayout linearLayout;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_object_animator);[m
+[32m+[m[32m        linearLayout = (LinearLayout) findViewById(R.id.container);[m
+[32m+[m[32m//        linearLayout.addView(new MyAnimationView(this));[m
+[32m+[m[32m        ObjectAnimator colorAnim = (ObjectAnimator) AnimatorInflater.loadAnimator(this,R.animator.color_anim);[m
+[32m+[m[32m        colorAnim.setTarget(linearLayout);[m
+[32m+[m[32m        colorAnim.start();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public class  MyAnimationView extends View{[m
+[32m+[m[32m        public MyAnimationView(Context context)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            super(context);[m
+[32m+[m[32m            ObjectAnimator colorAnim = (ObjectAnimator) AnimatorInflater.loadAnimator(context,R.animator.color_anim);[m
+[32m+[m[32m            colorAnim.setTarget(this);[m
+[32m+[m[32m            colorAnim.start();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/OriginalActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/OriginalActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c38fcef[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/OriginalActivity.java[m
+[36m@@ -0,0 +1,65 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six;[m
+[32m+[m
+[32m+[m[32mimport android.content.res.XmlResourceParser;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.widget.EditText;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m[32mimport org.xmlpull.v1.XmlPullParser;[m
+[32m+[m[32mimport org.xmlpull.v1.XmlPullParserException;[m
+[32m+[m
+[32m+[m[32mimport java.io.IOException;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 使用原始XML文件[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class OriginalActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    private EditText ed;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_native);[m
+[32m+[m[32m        ed = (EditText) findViewById(R.id.xml_ed);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public void getXmlValue(View v){[m
+[32m+[m[32m        //根据XML资源的ID获取解析该资源的解析器[m
+[32m+[m[32m        XmlResourceParser xrp = getResources().getXml(R.xml.books);[m
+[32m+[m[32m        StringBuilder stringBuilder = new StringBuilder();[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            while (xrp.getEventType() != XmlPullParser.END_DOCUMENT){[m
+[32m+[m[32m                if(xrp.getEventType() == XmlPullParser.START_TAG){[m
+[32m+[m[32m                    String tagName = xrp.getName();[m
+[32m+[m[32m                    if(tagName.equals("book")){[m
+[32m+[m[32m                        //根据属性名来获取属性值[m
+[32m+[m[32m                        String bookName = xrp.getAttributeValue(null,"price");[m
+[32m+[m[32m                        stringBuilder.append("价格：");[m
+[32m+[m[32m                        stringBuilder.append(bookName);[m
+[32m+[m[32m                        //根据属性索引来获取属性值[m
+[32m+[m[32m                        String bookPrice = xrp.getAttributeValue(1);[m
+[32m+[m[32m                        stringBuilder.append("   出版日期："+bookPrice);[m
+[32m+[m[32m                        stringBuilder.append(xrp.nextText());[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                    stringBuilder.append("\n");[m
+[32m+[m[32m                }[m
+[32m+[m[32m                //获取解析器的下一个事件[m
+[32m+[m[32m                xrp.next();[m
+[32m+[m[32m            }[m
+[32m+[m[32m            ed.setText(stringBuilder.toString());[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch (XmlPullParserException e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            e.printStackTrace();[m
+[32m+[m[32m        }[m
+[32m+[m[32m        catch (IOException e)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            e.printStackTrace();[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/ResouresActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/ResouresActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..dfa60d5[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/ResouresActivity.java[m
+[36m@@ -0,0 +1,68 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six;[m
+[32m+[m
+[32m+[m[32mimport android.graphics.drawable.ClipDrawable;[m
+[32m+[m[32mimport android.os.Handler;[m
+[32m+[m[32mimport android.os.Message;[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m[32mimport android.widget.ImageView;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mimport java.util.Timer;[m
+[32m+[m[32mimport java.util.TimerTask;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 讲解Resoures资源使用[m
+[32m+[m[32m * StateListDrawable 资源使用[m
+[32m+[m[32m * LayerDrawable 资源使用[m
+[32m+[m[32m * ShapeDrawable 资源使用[m
+[32m+[m[32m * ClipDrawable  对象使用[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class ResouresActivity extends AppCompatActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    private ImageView imageView;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_resoures);[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m        imageView = (ImageView) findViewById(R.id.image);[m
+[32m+[m[32m        final ClipDrawable drawable = (ClipDrawable)imageView.getDrawable();[m
+[32m+[m[32m        Log.e("level",drawable.getLevel()+"       =");[m
+[32m+[m[32m        final Handler handler = new Handler(){[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void handleMessage(Message msg)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                super.handleMessage(msg);[m
+[32m+[m[32m                if(msg.what == 0x12333)[m
+[32m+[m[32m                    drawable.setLevel(drawable.getLevel() + 200);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        };[m
+[32m+[m
+[32m+[m[32m        final Timer timer = new Timer();[m
+[32m+[m[32m        timer.schedule(new TimerTask()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void run()[m
+[32m+[m[32m            {[m
+[32m+[m[32m                try[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    Message msg = new Message();[m
+[32m+[m[32m                    msg.what = 0x12333;[m
+[32m+[m[32m                    handler.sendMessage(msg);[m
+[32m+[m
+[32m+[m[32m                    if(drawable.getLevel() >=10000)[m
+[32m+[m[32m                        timer.cancel();[m
+[32m+[m[32m                }catch (Exception e){[m
+[32m+[m[32m                    Log.e("error",e.getMessage());[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        },0,300);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/SixMainActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/SixMainActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ba832a0[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/SixMainActivity.java[m
+[36m@@ -0,0 +1,33 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six;[m
+[32m+[m
+[32m+[m[32mimport android.app.LauncherActivity;[m
+[32m+[m[32mimport android.content.Intent;[m
+[32m+[m[32mimport android.support.v7.app.AppCompatActivity;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mpublic class SixMainActivity extends AppCompatActivity[m
+[32m+[m[32m{[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_six_main);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void res(View v){[m
+[32m+[m[32m        startActivity(new Intent(SixMainActivity.this,ResouresActivity.class));[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void animation(View v){startActivity(new Intent(SixMainActivity.this,AnimationActivity.class));}[m
+[32m+[m
+[32m+[m[32m    public void objectanim(View view){ startActivity(new Intent(SixMainActivity.this,ObjectAnimatorActivity.class));}[m
+[32m+[m
+[32m+[m[32m    public void xml(View v){ startActivity(new Intent(SixMainActivity.this,OriginalActivity.class));}[m
+[32m+[m
+[32m+[m[32m    public void menu(View v){ startActivity(new Intent(SixMainActivity.this,CustomActivity.class));}[m
+[32m+[m
+[32m+[m[32m    public void sound(View v){ startActivity(new Intent(SixMainActivity.this,SoundActivity.class));}[m
+[32m+[m
+[32m+[m[32m    public void language(View v){ startActivity(new Intent(SixMainActivity.this,LanguageActivity.class));}[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/SoundActivity.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/SoundActivity.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5fc62f2[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/SoundActivity.java[m
+[36m@@ -0,0 +1,66 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six;[m
+[32m+[m
+[32m+[m[32mimport android.content.res.AssetFileDescriptor;[m
+[32m+[m[32mimport android.content.res.AssetManager;[m
+[32m+[m[32mimport android.media.MediaPlayer;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.view.View;[m
+[32m+[m[32mimport android.widget.Button;[m
+[32m+[m[32mimport com.system.caseandroid.BaseActivity;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mimport java.io.IOException;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * 播放声音   (assets 和 raw文件下的声音)[m
+[32m+[m[32m */[m
+[32m+[m[32mpublic class SoundActivity extends BaseActivity[m
+[32m+[m[32m{[m
+[32m+[m[32m    MediaPlayer player;[m
+[32m+[m[32m    MediaPlayer player1;[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onCreate(Bundle savedInstanceState)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super.onCreate(savedInstanceState);[m
+[32m+[m[32m        setContentView(R.layout.activity_sound);[m
+[32m+[m
+[32m+[m
+[32m+[m[32m        Button playAsset = (Button) findViewById(R.id.playAsset);[m
+[32m+[m[32m        //根据声音文件的ID来创建MediaPlay[m
+[32m+[m[32m        player = MediaPlayer.create(this,R.raw.bomb);[m
+[32m+[m[32m        //获取该应用的AssetManger[m
+[32m+[m[32m        AssetManager assets = getAssets();[m
+[32m+[m[32m        try[m
+[32m+[m[32m        {[m
+[32m+[m[32m            AssetFileDescriptor afd = assets.openFd("shot.mp3");[m
+[32m+[m[32m            player1 = new MediaPlayer();[m
+[32m+[m[32m            //使用MediaPlayer加载指定的声音文件[m
+[32m+[m[32m            player1.setDataSource(afd.getFileDescriptor());[m
+[32m+[m[32m            player1.prepare();[m
+[32m+[m[32m        }catch (IOException ex){[m
+[32m+[m[32m            ex.printStackTrace();[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        playAsset.setOnClickListener(new View.OnClickListener()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void onClick(View v)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                player1.start();[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m
+[32m+[m
+[32m+[m[32m        Button playRaw = (Button) findViewById(R.id.playRaw);[m
+[32m+[m[32m        playRaw.setOnClickListener(new View.OnClickListener()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void onClick(View v)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                player.start();[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/java/com/system/caseandroid/six/widegt/AlphaImageView.java b/CaseAndroid/src/main/java/com/system/caseandroid/six/widegt/AlphaImageView.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..451c9de[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/java/com/system/caseandroid/six/widegt/AlphaImageView.java[m
+[36m@@ -0,0 +1,79 @@[m
+[32m+[m[32mpackage com.system.caseandroid.six.widegt;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.content.res.TypedArray;[m
+[32m+[m[32mimport android.graphics.Canvas;[m
+[32m+[m[32mimport android.os.Handler;[m
+[32m+[m[32mimport android.os.Message;[m
+[32m+[m[32mimport android.util.AttributeSet;[m
+[32m+[m[32mimport android.widget.ImageView;[m
+[32m+[m[32mimport com.system.caseandroid.R;[m
+[32m+[m
+[32m+[m[32mimport java.util.Timer;[m
+[32m+[m[32mimport java.util.TimerTask;[m
+[32m+[m
+[32m+[m[32m/**[m
+[32m+[m[32m * Created by user on 2016/10/12.[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mpublic class AlphaImageView extends ImageView[m
+[32m+[m[32m{[m
+[32m+[m[32m    private int alphaDelta = 0;[m
+[32m+[m[32m    private int curAlpha = 0;[m
+[32m+[m[32m    private final int SPEED = 300;[m
+[32m+[m[32m    private int duration=0;[m
+[32m+[m[32m//    public AlphaImageView(Context context)[m
+[32m+[m[32m//    {[m
+[32m+[m[32m//        super(context);[m
+[32m+[m[32m//    }[m
+[32m+[m
+[32m+[m[32m    public AlphaImageView(Context context, AttributeSet attrs)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        super(context, attrs);[m
+[32m+[m[32m        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AlphaImageView);[m
+[32m+[m[32m        duration = typedArray.getInt(R.styleable.AlphaImageView_duration,0);[m
+[32m+[m[32m        alphaDelta = 255*SPEED/duration;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    Handler handler = new Handler(){[m
+[32m+[m[32m        @Override[m
+[32m+[m[32m        public void handleMessage(Message msg)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            super.handleMessage(msg);[m
+[32m+[m[32m            if(msg.what == 0x123){[m
+[32m+[m[32m                curAlpha += alphaDelta;[m
+[32m+[m[32m                if(curAlpha > 600) curAlpha = 600;[m
+[32m+[m[32m                AlphaImageView.this.setImageAlpha(curAlpha);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    };[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    protected void onDraw(Canvas canvas)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        AlphaImageView.this.setImageAlpha(curAlpha);[m
+[32m+[m[32m        super.onDraw(canvas);[m
+[32m+[m[32m        final Timer timer = new Timer();[m
+[32m+[m[32m        timer.schedule(new TimerTask()[m
+[32m+[m[32m        {[m
+[32m+[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void run()[m
+[32m+[m[32m            {[m
+[32m+[m[32m                Message msg = new Message();[m
+[32m+[m[32m                msg.what = 0x123;[m
+[32m+[m[32m                if(curAlpha>=255){[m
+[32m+[m[32m                    timer.cancel();[m
+[32m+[m[32m                }[m
+[32m+[m[32m                else[m
+[32m+[m[32m                    handler.sendMessage(msg);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        },0,SPEED);[m
+[32m+[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/CaseAndroid/src/main/res/anim/my_anim.xml b/CaseAndroid/src/main/res/anim/my_anim.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cac2a5b[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/anim/my_anim.xml[m
+[36m@@ -0,0 +1,50 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<set xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    android:duration="5000">[m
+[32m+[m[32m    <!-- alpha:设置透明度的改变 -->[m
+[32m+[m[32m    <!-- scale:设置图片进行变换 -->[m
+[32m+[m[32m    <!-- translate:设置图片进行位移变换 -->[m
+[32m+[m[32m    <!-- rotate:设置图片进行旋转 -->[m
+[32m+[m[32m    <!--<alpha-->[m
+[32m+[m[32m        <!--android:fromAlpha="float"-->[m
+[32m+[m[32m        <!--android:toAlpha="float"/>-->[m
+[32m+[m[32m    <!--<scale-->[m
+[32m+[m[32m        <!--android:fromXScale="float"-->[m
+[32m+[m[32m        <!--android:toXScale="float"-->[m
+[32m+[m[32m        <!--android:fromYScale="float"-->[m
+[32m+[m[32m        <!--android:toYScale="float"-->[m
+[32m+[m[32m        <!--android:pivotX="float"-->[m
+[32m+[m[32m        <!--android:pivotY="float"/>-->[m
+[32m+[m[32m    <!--<translate-->[m
+[32m+[m[32m        <!--android:fromXDelta="float"-->[m
+[32m+[m[32m        <!--android:toXDelta="float"-->[m
+[32m+[m[32m        <!--android:fromYDelta="float"-->[m
+[32m+[m[32m        <!--android:toYDelta="float"/>-->[m
+[32m+[m[32m    <!--<rotate-->[m
+[32m+[m[32m        <!--android:fromDegrees="float"-->[m
+[32m+[m[32m        <!--android:toDegrees="float"-->[m
+[32m+[m[32m        <!--android:pivotX="float"-->[m
+[32m+[m[32m        <!--android:pivotY="float"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- fillBefore是指动画结束时画面停留在第一帧，[m
+[32m+[m[32m    fillAfter是指动画结束是画面停留在最后一帧。[m
+[32m+[m[32m    设置fillAfter值必须在XML里设置，代码中设置无效[m
+[32m+[m[32m    piovtY=50% 以Y轴扩散 piovtX=50% 以X轴扩散[m
+[32m+[m[32m    -->[m
+[32m+[m[32m    <scale[m
+[32m+[m[32m        android:fromXScale="1.0"[m
+[32m+[m[32m        android:toXScale="1.4"[m
+[32m+[m[32m        android:fromYScale="1.0"[m
+[32m+[m[32m        android:toYScale="1.4"[m
+[32m+[m[32m        android:pivotY="50%"[m
+[32m+[m[32m        android:pivotX="50%"[m
+[32m+[m[32m        android:fillAfter="true"[m
+[32m+[m[32m        android:duration="5000"/>[m
+[32m+[m
+[32m+[m[32m    <translate[m
+[32m+[m[32m        android:fromYDelta="10"[m
+[32m+[m[32m        android:toXDelta="130"[m
+[32m+[m[32m        android:fromXDelta="30"[m
+[32m+[m[32m        android:toYDelta="-80"[m
+[32m+[m[32m        android:duration="5000"/>[m
+[32m+[m[32m</set>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/animator/color_anim.xml b/CaseAndroid/src/main/res/animator/color_anim.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d241ed2[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/animator/color_anim.xml[m
+[36m@@ -0,0 +1,11 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    android:propertyName="backgroundColor"[m
+[32m+[m[32m    android:duration="3000"[m
+[32m+[m[32m    android:valueFrom="#FF8080"[m
+[32m+[m[32m    android:valueTo="#8080FF"[m
+[32m+[m[32m    android:repeatCount="infinite"[m
+[32m+[m[32m    android:repeatMode="reverse"[m
+[32m+[m[32m    android:valueType="intType">[m
+[32m+[m[32m</objectAnimator>[m
+[32m+[m
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/grow.gif b/CaseAndroid/src/main/res/drawable/grow.gif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..bafc683[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/drawable/grow.gif differ
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/ic_launcher.png b/CaseAndroid/src/main/res/drawable/ic_launcher.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cde69bc[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/drawable/ic_launcher.png differ
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/java.png b/CaseAndroid/src/main/res/drawable/java.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9cc959e[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/drawable/java.png differ
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/javaee.png b/CaseAndroid/src/main/res/drawable/javaee.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..199e6b5[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/drawable/javaee.png differ
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/layout_logo.xml b/CaseAndroid/src/main/res/drawable/layout_logo.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3cffce9[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/drawable/layout_logo.xml[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<!-- LayerDrawable资源 -->[m
+[32m+[m[32m<layer-list xmlns:android="http://schemas.android.com/apk/res/android">[m
+[32m+[m[32m    <item>[m
+[32m+[m[32m        <bitmap android:src="@drawable/ic_launcher" android:gravity="center"/>[m
+[32m+[m[32m    </item>[m
+[32m+[m[32m    <item android:top="25dp" android:left="25dp">[m
+[32m+[m[32m        <bitmap android:src="@drawable/ic_launcher" android:gravity="center"/>[m
+[32m+[m[32m    </item>[m
+[32m+[m[32m    <item android:top="50dp" android:left="50dp">[m
+[32m+[m[32m        <bitmap android:src="@drawable/ic_launcher" android:gravity="center"/>[m
+[32m+[m[32m    </item>[m
+[32m+[m[32m</layer-list>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/my_bar.xml b/CaseAndroid/src/main/res/drawable/my_bar.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..05343fb[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/drawable/my_bar.xml[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<!-- LayerDrawable资源 -->[m
+[32m+[m[32m<layer-list xmlns:android="http://schemas.android.com/apk/res/android">[m
+[32m+[m[32m    <item android:id="@android:id/background" android:drawable="@drawable/grow"/>[m
+[32m+[m[32m    <item android:id="@android:id/progress" android:drawable="@drawable/ok"/>[m
+[32m+[m[32m</layer-list>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/my_clip.xml b/CaseAndroid/src/main/res/drawable/my_clip.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..08de7f7[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/drawable/my_clip.xml[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<clip xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    android:drawable="@drawable/shuangta"[m
+[32m+[m[32m    android:clipOrientation="horizontal"[m
+[32m+[m[32m    android:gravity="center">[m
+[32m+[m[32m</clip>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/my_image.xml b/CaseAndroid/src/main/res/drawable/my_image.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5a66455[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/drawable/my_image.xml[m
+[36m@@ -0,0 +1,8 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<!-- StateListDrawable使用 -->[m
+[32m+[m[32m<selector xmlns:android="http://schemas.android.com/apk/res/android">[m
+[32m+[m[32m    <!-- 指定获得焦点时的颜色 -->[m
+[32m+[m[32m    <item android:state_focused="true" android:color="#f44"/>[m
+[32m+[m[32m    <!-- 指定失去焦点时的颜色 -->[m
+[32m+[m[32m    <item android:state_focused="false" android:color="#ccf"/>[m
+[32m+[m[32m</selector>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/my_shape.xml b/CaseAndroid/src/main/res/drawable/my_shape.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a5ecfb6[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/drawable/my_shape.xml[m
+[36m@@ -0,0 +1,70 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<!-- SharpeDrawable资源   类型corners、gradient、padding、size、solid、stroke-->[m
+[32m+[m[32m<!-- android:shape类型 rectangle  oval   line  ring"}-->[m
+[32m+[m[32m<shape xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    android:shape="rectangle">[m
+[32m+[m[32m    <!-- 定义几何图形的四个角度的弧度 -->[m
+[32m+[m[32m    <!--<corners android:radius="10dp"-->[m
+[32m+[m[32m        <!--android:topLeftRadius="5dp"-->[m
+[32m+[m[32m        <!--android:topRightRadius="5dp"-->[m
+[32m+[m[32m        <!--android:bottomLeftRadius="5dp"-->[m
+[32m+[m[32m        <!--android:bottomRightRadius="5dp"/>-->[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    <!-- 定义使用渐变色填充 -->[m
+[32m+[m[32m    <!-- android:type类型 linear  radial   sweep -->[m
+[32m+[m[32m    <!--<gradient-->[m
+[32m+[m[32m        <!--android:angle="10dp"-->[m
+[32m+[m[32m        <!--android:centerX="10dp"-->[m
+[32m+[m[32m        <!--android:centerY="10dp"-->[m
+[32m+[m[32m        <!--android:centerColor="10dp"-->[m
+[32m+[m[32m        <!--android:endColor="10dp"-->[m
+[32m+[m[32m        <!--android:angle="45"-->[m
+[32m+[m[32m        <!--android:gradientRadius="10dp"-->[m
+[32m+[m[32m        <!--android:startColor="@color/colorAccent"-->[m
+[32m+[m[32m        <!--android:type="radial"-->[m
+[32m+[m[32m        <!--android:useLevel="true"/>-->[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    <!-- 定义几何形状的内边距 -->[m
+[32m+[m[32m    <!--<padding-->[m
+[32m+[m[32m        <!--android:left="10dp"-->[m
+[32m+[m[32m        <!--android:right="10dp"-->[m
+[32m+[m[32m        <!--android:bottom="10dp"-->[m
+[32m+[m[32m        <!--android:top="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义几何形状的大小 -->[m
+[32m+[m[32m    <!--<size-->[m
+[32m+[m[32m        <!--android:height="10dp"-->[m
+[32m+[m[32m        <!--android:width="10dp"-->[m
+[32m+[m[32m        <!--android:dashWidth="10dp"-->[m
+[32m+[m[32m        <!--android:dashGap="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义使用单中颜色填充 -->[m
+[32m+[m[32m    <!--<solid-->[m
+[32m+[m[32m        <!--android:color="@color/colorAccent"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义为几何形状绘制边框 -->[m
+[32m+[m[32m    <!--<stroke-->[m
+[32m+[m[32m        <!--android:width="10dp"-->[m
+[32m+[m[32m        <!--android:color="@color/colorAccent"-->[m
+[32m+[m[32m        <!--android:dashWidth="10dp"-->[m
+[32m+[m[32m        <!--android:dashGap="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义使用单中颜色填充 -->[m
+[32m+[m[32m    <solid[m
+[32m+[m[32m        android:color="@color/colorAccent"/>[m
+[32m+[m[32m    <!-- 设置填充的内边距 -->[m
+[32m+[m[32m    <padding[m
+[32m+[m[32m        android:left="10dp"[m
+[32m+[m[32m        android:right="10dp"[m
+[32m+[m[32m        android:bottom="10dp"[m
+[32m+[m[32m        android:top="10dp"/>[m
+[32m+[m[32m    <!--设置边框 -->[m
+[32m+[m[32m    <stroke[m
+[32m+[m[32m        android:width="3dip"[m
+[32m+[m[32m        android:color="@color/colorAccent"/>[m
+[32m+[m
+[32m+[m[32m</shape>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/my_shape2.xml b/CaseAndroid/src/main/res/drawable/my_shape2.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..73c12fd[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/drawable/my_shape2.xml[m
+[36m@@ -0,0 +1,72 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<!-- SharpeDrawable资源   类型corners、gradient、padding、size、solid、stroke-->[m
+[32m+[m[32m<!-- android:shape类型 rectangle  oval   line  ring"}-->[m
+[32m+[m[32m<shape xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    android:shape="rectangle">[m
+[32m+[m[32m    <!-- 定义几何图形的四个角度的弧度 -->[m
+[32m+[m[32m    <!--<corners android:radius="10dp"-->[m
+[32m+[m[32m        <!--android:topLeftRadius="5dp"-->[m
+[32m+[m[32m        <!--android:topRightRadius="5dp"-->[m
+[32m+[m[32m        <!--android:bottomLeftRadius="5dp"-->[m
+[32m+[m[32m        <!--android:bottomRightRadius="5dp"/>-->[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    <!-- 定义使用渐变色填充 -->[m
+[32m+[m[32m    <!-- android:type类型 linear  radial   sweep -->[m
+[32m+[m[32m    <!--<gradient-->[m
+[32m+[m[32m        <!--android:angle="10dp"-->[m
+[32m+[m[32m        <!--android:centerX="10dp"-->[m
+[32m+[m[32m        <!--android:centerY="10dp"-->[m
+[32m+[m[32m        <!--android:centerColor="10dp"-->[m
+[32m+[m[32m        <!--android:endColor="10dp"-->[m
+[32m+[m[32m        <!--android:angle="45"-->[m
+[32m+[m[32m        <!--android:gradientRadius="10dp"-->[m
+[32m+[m[32m        <!--android:startColor="@color/colorAccent"-->[m
+[32m+[m[32m        <!--android:type="radial"-->[m
+[32m+[m[32m        <!--android:useLevel="true"/>-->[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    <!-- 定义几何形状的内边距 -->[m
+[32m+[m[32m    <!--<padding-->[m
+[32m+[m[32m        <!--android:left="10dp"-->[m
+[32m+[m[32m        <!--android:right="10dp"-->[m
+[32m+[m[32m        <!--android:bottom="10dp"-->[m
+[32m+[m[32m        <!--android:top="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义几何形状的大小 -->[m
+[32m+[m[32m    <!--<size-->[m
+[32m+[m[32m        <!--android:height="10dp"-->[m
+[32m+[m[32m        <!--android:width="10dp"-->[m
+[32m+[m[32m        <!--android:dashWidth="10dp"-->[m
+[32m+[m[32m        <!--android:dashGap="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义使用单中颜色填充 -->[m
+[32m+[m[32m    <!--<solid-->[m
+[32m+[m[32m        <!--android:color="@color/colorAccent"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义为几何形状绘制边框 -->[m
+[32m+[m[32m    <!--<stroke-->[m
+[32m+[m[32m        <!--android:width="10dp"-->[m
+[32m+[m[32m        <!--android:color="@color/colorAccent"-->[m
+[32m+[m[32m        <!--android:dashWidth="10dp"-->[m
+[32m+[m[32m        <!--android:dashGap="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义填充渐变颜色 -->[m
+[32m+[m[32m    <gradient[m
+[32m+[m[32m        android:endColor="#80FF00FF"[m
+[32m+[m[32m        android:gradientRadius="60dp"[m
+[32m+[m[32m        android:angle="45"[m
+[32m+[m[32m        android:startColor="#FFFF0000"/>[m
+[32m+[m[32m    <!-- 设置填充的内边距 -->[m
+[32m+[m[32m    <padding[m
+[32m+[m[32m        android:left="10dp"[m
+[32m+[m[32m        android:right="10dp"[m
+[32m+[m[32m        android:bottom="10dp"[m
+[32m+[m[32m        android:top="10dp"/>[m
+[32m+[m[32m    <!--设置圆角矩形 -->[m
+[32m+[m[32m    <corners[m
+[32m+[m[32m        android:radius="8dp"/>[m
+[32m+[m[41m    [m
+[32m+[m[32m</shape>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/my_shape3.xml b/CaseAndroid/src/main/res/drawable/my_shape3.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..96d919c[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/drawable/my_shape3.xml[m
+[36m@@ -0,0 +1,72 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<!-- SharpeDrawable资源   类型corners、gradient、padding、size、solid、stroke-->[m
+[32m+[m[32m<!-- android:shape类型 rectangle  oval   line  ring"}-->[m
+[32m+[m[32m<shape xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    android:shape="rectangle">[m
+[32m+[m[32m    <!-- 定义几何图形的四个角度的弧度 -->[m
+[32m+[m[32m    <!--<corners android:radius="10dp"-->[m
+[32m+[m[32m        <!--android:topLeftRadius="5dp"-->[m
+[32m+[m[32m        <!--android:topRightRadius="5dp"-->[m
+[32m+[m[32m        <!--android:bottomLeftRadius="5dp"-->[m
+[32m+[m[32m        <!--android:bottomRightRadius="5dp"/>-->[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    <!-- 定义使用渐变色填充 -->[m
+[32m+[m[32m    <!-- android:type类型 linear  radial   sweep -->[m
+[32m+[m[32m    <!--<gradient-->[m
+[32m+[m[32m        <!--android:angle="10dp"-->[m
+[32m+[m[32m        <!--android:centerX="10dp"-->[m
+[32m+[m[32m        <!--android:centerY="10dp"-->[m
+[32m+[m[32m        <!--android:centerColor="10dp"-->[m
+[32m+[m[32m        <!--android:endColor="10dp"-->[m
+[32m+[m[32m        <!--android:angle="45"-->[m
+[32m+[m[32m        <!--android:gradientRadius="10dp"-->[m
+[32m+[m[32m        <!--android:startColor="@color/colorAccent"-->[m
+[32m+[m[32m        <!--android:type="radial"-->[m
+[32m+[m[32m        <!--android:useLevel="true"/>-->[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    <!-- 定义几何形状的内边距 -->[m
+[32m+[m[32m    <!--<padding-->[m
+[32m+[m[32m        <!--android:left="10dp"-->[m
+[32m+[m[32m        <!--android:right="10dp"-->[m
+[32m+[m[32m        <!--android:bottom="10dp"-->[m
+[32m+[m[32m        <!--android:top="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义几何形状的大小 -->[m
+[32m+[m[32m    <!--<size-->[m
+[32m+[m[32m        <!--android:height="10dp"-->[m
+[32m+[m[32m        <!--android:width="10dp"-->[m
+[32m+[m[32m        <!--android:dashWidth="10dp"-->[m
+[32m+[m[32m        <!--android:dashGap="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义使用单中颜色填充 -->[m
+[32m+[m[32m    <!--<solid-->[m
+[32m+[m[32m        <!--android:color="@color/colorAccent"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义为几何形状绘制边框 -->[m
+[32m+[m[32m    <!--<stroke-->[m
+[32m+[m[32m        <!--android:width="10dp"-->[m
+[32m+[m[32m        <!--android:color="@color/colorAccent"-->[m
+[32m+[m[32m        <!--android:dashWidth="10dp"-->[m
+[32m+[m[32m        <!--android:dashGap="10dp"/>-->[m
+[32m+[m
+[32m+[m[32m    <!-- 定义填充渐变颜色 -->[m
+[32m+[m[32m    <gradient[m
+[32m+[m[32m        android:endColor="#00f"[m
+[32m+[m[32m        android:type="sweep"[m
+[32m+[m[32m        android:angle="45"[m
+[32m+[m[32m        android:startColor="#ff0"/>[m
+[32m+[m[32m    <!-- 设置填充的内边距 -->[m
+[32m+[m[32m    <padding[m
+[32m+[m[32m        android:left="10dp"[m
+[32m+[m[32m        android:right="10dp"[m
+[32m+[m[32m        android:bottom="10dp"[m
+[32m+[m[32m        android:top="10dp"/>[m
+[32m+[m[32m    <!--设置圆角矩形 -->[m
+[32m+[m[32m    <corners[m
+[32m+[m[32m        android:radius="8dp"/>[m
+[32m+[m[41m    [m
+[32m+[m[32m</shape>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/ok.gif b/CaseAndroid/src/main/res/drawable/ok.gif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d91d170[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/drawable/ok.gif differ
+[1mdiff --git a/CaseAndroid/src/main/res/drawable/shuangta.jpg b/CaseAndroid/src/main/res/drawable/shuangta.jpg[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e8ecdec[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/drawable/shuangta.jpg differ
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_animation.xml b/CaseAndroid/src/main/res/layout/activity_animation.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ea88a6f[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_animation.xml[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_animation"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.six.AnimationActivity">[m
+[32m+[m[32m    <ImageView[m
+[32m+[m[32m        android:layout_width="wrap_content"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:src="@drawable/java"[m
+[32m+[m[32m        android:onClick="startAnim"/>[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_bitmap.xml b/CaseAndroid/src/main/res/layout/activity_bitmap.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..324064c[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_bitmap.xml[m
+[36m@@ -0,0 +1,21 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_bitmap"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.seven.BitmapActivity">[m
+[32m+[m
+[32m+[m[32m    <ImageView[m
+[32m+[m[32m        android:layout_width="wrap_content"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:id="@+id/image_view"/>[m
+[32m+[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="获取asses文件下的所有图片"[m
+[32m+[m[32m        android:onClick="btnBitmap"/>[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_custome.xml b/CaseAndroid/src/main/res/layout/activity_custome.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..dff4f01[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_custome.xml[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:app="http://schemas.android.com/apk/res-auto/com.system.caseandroid.six.widegt"[m
+[32m+[m[32m    android:id="@+id/activity_custome"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent">[m
+[32m+[m[32m    <com.system.caseandroid.six.widegt.AlphaImageView[m
+[32m+[m[32m        android:layout_width="wrap_content"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:src="@drawable/javaee"[m
+[32m+[m[32m        app:duration="6000"/>[m
+[32m+[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_demo.xml b/CaseAndroid/src/main/res/layout/activity_demo.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7c7ac88[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_demo.xml[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_demo"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:paddingBottom="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    android:paddingLeft="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingRight="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingTop="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.seven.DemoActivity">[m
+[32m+[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_draw.xml b/CaseAndroid/src/main/res/layout/activity_draw.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6ea54a4[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_draw.xml[m
+[36m@@ -0,0 +1,12 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_draw"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.seven.DrawActivity">[m
+[32m+[m[32m    <com.system.caseandroid.seven.widget.MyView[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="match_parent" />[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_extra.xml b/CaseAndroid/src/main/res/layout/activity_extra.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..50d5474[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_extra.xml[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_extra"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:paddingBottom="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    android:paddingLeft="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingRight="@dimen/activity_horizontal_margin"[m
+[32m+[m[32m    android:paddingTop="@dimen/activity_vertical_margin"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.Fives.ExtraActivity">[m
+[32m+[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_fives_main.xml b/CaseAndroid/src/main/res/layout/activity_fives_main.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..fba442c[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_fives_main.xml[m
+[36m@@ -0,0 +1,21 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_fives_main"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.Fives.FivesMainActivity">[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:text="Intent用法"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:id="@+id/btn_intent"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:text="Extra用法"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:onClick="extra"/>[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_language.xml b/CaseAndroid/src/main/res/layout/activity_language.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..798f90f[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_language.xml[m
+[36m@@ -0,0 +1,17 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_language"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.six.LanguageActivity">[m
+[32m+[m[32m    <ScrollView[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="match_parent">[m
+[32m+[m[32m        <TextView[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="match_parent"[m
+[32m+[m[32m            android:id="@+id/language_txt"/>[m
+[32m+[m[32m    </ScrollView>[m
+[32m+[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_native.xml b/CaseAndroid/src/main/res/layout/activity_native.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6a03656[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_native.xml[m
+[36m@@ -0,0 +1,19 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_native"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.six.OriginalActivity">[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:onClick="getXmlValue"[m
+[32m+[m[32m        android:text="解析XML资源"/>[m
+[32m+[m[32m    <EditText[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:id="@+id/xml_ed"[m
+[32m+[m[32m        android:cursorVisible="false"/>[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_object_animator.xml b/CaseAndroid/src/main/res/layout/activity_object_animator.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..55a1605[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_object_animator.xml[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_object_animator"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.six.ObjectAnimatorActivity">[m
+[32m+[m[32m    <LinearLayout[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="300dp"[m
+[32m+[m[32m        android:orientation="vertical"[m
+[32m+[m[32m        android:id="@+id/container"/>[m
+[32m+[m[32m</RelativeLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_resoures.xml b/CaseAndroid/src/main/res/layout/activity_resoures.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5273944[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_resoures.xml[m
+[36m@@ -0,0 +1,60 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_resoures"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.six.ResouresActivity">[m
+[32m+[m[32m    <LinearLayout[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="match_parent"[m
+[32m+[m[32m        android:orientation="vertical">[m
+[32m+[m[32m        <ListView[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:entries="@array/books"/>[m
+[32m+[m[32m        <EditText[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:cursorVisible="false"[m
+[32m+[m[32m            android:textColor="@drawable/my_image"/>[m
+[32m+[m[32m        <EditText[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:cursorVisible="false"[m
+[32m+[m[32m            android:textColor="@drawable/my_image"/>[m
+[32m+[m
+[32m+[m[32m        <SeekBar[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:max="100"[m
+[32m+[m[32m            android:progressDrawable="@drawable/my_bar"/>[m
+[32m+[m[32m        <ImageView[m
+[32m+[m[32m            android:layout_width="wrap_content"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:src="@drawable/layout_logo"/>[m
+[32m+[m[32m        <EditText[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:cursorVisible="false"[m
+[32m+[m[32m            android:background="@drawable/my_shape"/>[m
+[32m+[m[32m        <EditText[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:cursorVisible="false"[m
+[32m+[m[32m            android:background="@drawable/my_shape2"/>[m
+[32m+[m[32m        <EditText[m
+[32m+[m[32m            android:layout_width="match_parent"[m
+[32m+[m[32m            android:layout_height="wrap_content"[m
+[32m+[m[32m            android:cursorVisible="false"[m
+[32m+[m[32m            android:background="@drawable/my_shape3"/>[m
+[32m+[m
+[32m+[m[32m        <ImageView[m
+[32m+[m[32m            android:layout_width="wrap_content"[m
+[32m+[m[32m            android:layout_height="match_parent"[m
+[32m+[m[32m            android:id="@+id/image"[m
+[32m+[m[32m            android:src="@drawable/my_clip"/>[m
+[32m+[m[32m    </LinearLayout>[m
+[32m+[m
+[32m+[m[32m</ScrollView>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_second.xml b/CaseAndroid/src/main/res/layout/activity_second.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..59649bb[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_second.xml[m
+[36m@@ -0,0 +1,68 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_second"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.Fives.SecondActivity">[m
+[32m+[m[32m    <EditText[m
+[32m+[m[32m        android:id="@+id/show"[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:editable="false"[m
+[32m+[m[32m        android:cursorVisible="false"/>[m
+[32m+[m[32m    <EditText[m
+[32m+[m[32m        android:id="@+id/phone"[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:editable="false"[m
+[32m+[m[32m        android:cursorVisible="false"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:text="查看联系人"[m
+[32m+[m[32m        android:id="@+id/bn"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:text="返回手机桌面"[m
+[32m+[m[32m        android:onClick="home"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="演示Intent的Data属性与Type属性互相覆盖"[m
+[32m+[m[32m        android:onClick="dataOrtype"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="演示Intent的Data属性与Type属性互相覆盖"[m
+[32m+[m[32m        android:onClick="dataOrtype1"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="演示Intent的Data属性与Type属性并存"[m
+[32m+[m[32m        android:onClick="dataAndtype"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="使用Action、Data属性启动系统Activity"[m
+[32m+[m[32m        android:onClick="actionAndData"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="使用Action、Data属性启动系统Activity"[m
+[32m+[m[32m        android:onClick="edit"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="使用Action、Data属性启动系统Activity"[m
+[32m+[m[32m        android:onClick="call"/>[m
+[32m+[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_seven.xml b/CaseAndroid/src/main/res/layout/activity_seven.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..aa42282[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_seven.xml[m
+[36m@@ -0,0 +1,36 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_seven"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.seven.SevenActivity">[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="Bitmap"[m
+[32m+[m[32m        android:onClick="bitmap"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="绘图：Canvas、Paint"[m
+[32m+[m[32m        android:textColor="#ffcc3131"[m
+[32m+[m[32m        android:onClick="draw"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="Path讲解"[m
+[32m+[m[32m        android:textColor="#ffcc3131"[m
+[32m+[m[32m        android:onClick="path"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="Path和Paint案例"[m
+[32m+[m[32m        android:textColor="#ffcc3131"[m
+[32m+[m[32m        android:onClick="demo"/>[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_six_main.xml b/CaseAndroid/src/main/res/layout/activity_six_main.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a863eae[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_six_main.xml[m
+[36m@@ -0,0 +1,52 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_six_main"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.six.SixMainActivity">[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:onClick="res"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="讲解Resources"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:onClick="animation"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="讲解动画"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:onClick="objectanim"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="ObjectAnimator动画"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:onClick="xml"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="使用原始XML"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:onClick="menu"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="自定义控件属性"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:onClick="sound"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="播放assets/raw文件下的MP3"/>[m
+[32m+[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:onClick="language"[m
+[32m+[m[32m        android:textAllCaps="false"[m
+[32m+[m[32m        android:text="Java支持那些语言"/>[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/layout/activity_sound.xml b/CaseAndroid/src/main/res/layout/activity_sound.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..eb1f423[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/layout/activity_sound.xml[m
+[36m@@ -0,0 +1,22 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"[m
+[32m+[m[32m    xmlns:tools="http://schemas.android.com/tools"[m
+[32m+[m[32m    android:id="@+id/activity_sound"[m
+[32m+[m[32m    android:layout_width="match_parent"[m
+[32m+[m[32m    android:layout_height="match_parent"[m
+[32m+[m[32m    android:orientation="vertical"[m
+[32m+[m[32m    tools:context="com.system.caseandroid.six.SoundActivity">[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:id="@+id/playRaw"[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:text="@string/play_raw"/>[m
+[32m+[m[32m    <Button[m
+[32m+[m[32m        android:id="@+id/playAsset"[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="wrap_content"[m
+[32m+[m[32m        android:text="@string/play_asset"/>[m
+[32m+[m[32m    <MediaController[m
+[32m+[m[32m        android:layout_width="match_parent"[m
+[32m+[m[32m        android:layout_height="300dp"/>[m
+[32m+[m[32m</LinearLayout>[m
+[1mdiff --git a/CaseAndroid/src/main/res/menu/menu_main.xml b/CaseAndroid/src/main/res/menu/menu_main.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0bba3b2[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/menu/menu_main.xml[m
+[36m@@ -0,0 +1,34 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<menu xmlns:android="http://schemas.android.com/apk/res/android">[m
+[32m+[m	[32m<item android:title="@string/color">[m
+[32m+[m		[32m<menu>[m
+[32m+[m			[32m<!-- 定义一组单选菜单项 -->[m
+[32m+[m			[32m<group android:checkableBehavior="single">[m
+[32m+[m				[32m<!-- 定义多个菜单项 -->[m
+[32m+[m				[32m<item android:id="@+id/red"[m
+[32m+[m					[32m android:title="@string/color_red"/>[m
+[32m+[m				[32m<item android:id="@+id/green"[m
+[32m+[m					[32m android:title="@string/color_green"/>[m
+[32m+[m				[32m<item android:id="@+id/blue"[m
+[32m+[m					[32m android:title="@string/color_blue"/>[m
+[32m+[m			[32m</group>[m
+[32m+[m		[32m</menu>[m
+[32m+[m	[32m</item>[m
+[32m+[m	[32m<item android:title="@string/width">[m
+[32m+[m		[32m<menu>[m
+[32m+[m			[32m<!-- 定义一组菜单项 -->[m
+[32m+[m			[32m<group>[m
+[32m+[m				[32m<!-- 定义三个菜单项 -->[m
+[32m+[m				[32m<item android:id="@+id/width_1"[m
+[32m+[m					[32m android:title="@string/width_1"/>[m
+[32m+[m				[32m<item android:id="@+id/width_3"[m
+[32m+[m					[32m android:title="@string/width_3"/>[m
+[32m+[m				[32m<item android:id="@+id/width_5"[m
+[32m+[m					[32m android:title="@string/width_5"/>[m
+[32m+[m			[32m</group>[m
+[32m+[m		[32m</menu>[m
+[32m+[m	[32m</item>[m
+[32m+[m	[32m<item android:id="@+id/blur" android:title="@string/blur"/>[m
+[32m+[m	[32m<item android:id="@+id/emboss" android:title="@string/emboss"/>[m
+[32m+[m	[32m<item android:id="@+id/clear" android:title="@string/clear"/>[m
+[32m+[m[32m</menu>[m
+[1mdiff --git a/CaseAndroid/src/main/res/raw/beep.ogg b/CaseAndroid/src/main/res/raw/beep.ogg[m
+[1mdeleted file mode 100644[m
+[1mindex 1419947..0000000[m
+Binary files a/CaseAndroid/src/main/res/raw/beep.ogg and /dev/null differ
+[1mdiff --git a/CaseAndroid/src/main/res/raw/bomb.mp3 b/CaseAndroid/src/main/res/raw/bomb.mp3[m
+[1mnew file mode 100644[m
+[1mindex 0000000..51514c5[m
+Binary files /dev/null and b/CaseAndroid/src/main/res/raw/bomb.mp3 differ
+[1mdiff --git a/CaseAndroid/src/main/res/values/array.xml b/CaseAndroid/src/main/res/values/array.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6212513[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/values/array.xml[m
+[36m@@ -0,0 +1,10 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<resources>[m
+[32m+[m
+[32m+[m[32m    <string-array name="books">[m
+[32m+[m[32m        <item>疯狂Java讲义</item>[m
+[32m+[m[32m        <item>疯狂Ajax讲义</item>[m
+[32m+[m[32m        <item>疯狂Android讲义</item>[m
+[32m+[m[32m    </string-array>[m
+[32m+[m
+[32m+[m[32m</resources>[m
+[1mdiff --git a/CaseAndroid/src/main/res/values/attrs.xml b/CaseAndroid/src/main/res/values/attrs.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..69e4b52[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/values/attrs.xml[m
+[36m@@ -0,0 +1,9 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<resources>[m
+[32m+[m[32m    <!-- 定义一个属性 -->[m
+[32m+[m[32m    <attr name="duration" />[m
+[32m+[m[32m    <!-- 定义一个styleable对象来组合多个属性 -->[m
+[32m+[m[32m    <declare-styleable name="AlphaImageView">[m
+[32m+[m[32m        <attr name="duration" />[m
+[32m+[m[32m    </declare-styleable>[m
+[32m+[m[32m</resources>[m
+\ No newline at end of file[m
+[1mdiff --git a/CaseAndroid/src/main/res/values/strings.xml b/CaseAndroid/src/main/res/values/strings.xml[m
+[1mindex 875dd27..5105400 100644[m
+[1m--- a/CaseAndroid/src/main/res/values/strings.xml[m
+[1m+++ b/CaseAndroid/src/main/res/values/strings.xml[m
+[36m@@ -1,9 +1,26 @@[m
+ <resources>[m
+[31m-    <string name="app_name">CaseAndroid</string>[m
+[32m+[m[32m    <string name="app_name">疯狂Android案例</string>[m
+     <string name="title_activity_table">TableActivity</string>[m
+     <string name="action_settings">Settings</string>[m
+     <string name="section_format">Hello World from section: %1$d</string>[m
+ [m
+     <!-- TODO: Remove or change this placeholder text -->[m
+     <string name="hello_blank_fragment">Hello blank fragment</string>[m
+[32m+[m[32m    <string name="title_activity_menu">MenuActivity</string>[m
+[32m+[m[32m    <string name="play_raw">播放Raw声音</string>[m
+[32m+[m[32m    <string name="play_asset">播放Asset声音</string>[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    <string name="width_1">1像素</string>[m
+[32m+[m[32m    <string name="width_3">3像素</string>[m
+[32m+[m[32m    <string name="width_5">5像素</string>[m
+[32m+[m[32m    <string name="color_red">红色</string>[m
+[32m+[m[32m    <string name="color_green">绿色</string>[m
+[32m+[m[32m    <string name="color_blue">蓝色</string>[m
+[32m+[m[32m    <string name="color">画笔颜色</string>[m
+[32m+[m[32m    <string name="width">画笔宽度</string>[m
+[32m+[m[32m    <string name="blur">模糊效果</string>[m
+[32m+[m[32m    <string name="emboss">浮雕效果</string>[m
+[32m+[m[32m    <string name="clear">清空</string>[m
+[32m+[m
+ </resources>[m
+[1mdiff --git a/CaseAndroid/src/main/res/values/styles.xml b/CaseAndroid/src/main/res/values/styles.xml[m
+[1mindex 545b9c6..5f4c6e0 100644[m
+[1m--- a/CaseAndroid/src/main/res/values/styles.xml[m
+[1m+++ b/CaseAndroid/src/main/res/values/styles.xml[m
+[36m@@ -6,6 +6,8 @@[m
+         <item name="colorPrimary">@color/colorPrimary</item>[m
+         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>[m
+         <item name="colorAccent">@color/colorAccent</item>[m
+[32m+[m[32m        <item name="windowActionBar">true</item>[m
+[32m+[m[32m        <item name="windowNoTitle">false</item>[m
+     </style>[m
+ [m
+     <style name="AppTheme.NoActionBar">[m
+[36m@@ -17,4 +19,12 @@[m
+ [m
+     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />[m
+ [m
+[32m+[m
+[32m+[m[32m    <style name="CarzyTheme">[m
+[32m+[m[32m        <item name="android:windowNoTitle">false</item>[m
+[32m+[m[32m        <item name="android:windowFullscreen">false</item>[m
+[32m+[m[32m    </style>[m
+[32m+[m
+[32m+[m
+[32m+[m
+ </resources>[m
+[1mdiff --git a/CaseAndroid/src/main/res/xml/books.xml b/CaseAndroid/src/main/res/xml/books.xml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4ac701d[m
+[1m--- /dev/null[m
+[1m+++ b/CaseAndroid/src/main/res/xml/books.xml[m
+[36m@@ -0,0 +1,6 @@[m
+[32m+[m[32m<?xml version="1.0" encoding="utf-8"?>[m
+[32m+[m[32m<books xmlns:android="http://schemas.android.com/apk/res/android">[m
+[32m+[m[32m    <book price="109.0" 出版日期="2008年">疯狂Java讲义</book>[m
+[32m+[m[32m    <book price="108.0" 出版日期="2008年">疯狂Java EE企业应用实战</book>[m
+[32m+[m[32m    <book price="79.0" 出版日期="2008年">疯狂AJax讲义</book>[m
+[32m+[m[32m</books>[m
+\ No newline at end of file[m

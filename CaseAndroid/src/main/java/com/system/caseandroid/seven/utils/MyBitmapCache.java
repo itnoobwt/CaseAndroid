@@ -7,6 +7,7 @@ package com.system.caseandroid.seven.utils;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.ImageView;
+import com.system.caseandroid.MyApplication;
 import com.system.caseandroid.R;
 
 /**
@@ -21,7 +22,8 @@ public class MyBitmapCache
     public static MyBitmapCache getInstance(){
         if(myBitmapCache == null){
             synchronized (MyBitmapCache.class){
-                myBitmapCache = new MyBitmapCache();
+                if(myBitmapCache == null)
+                    myBitmapCache = new MyBitmapCache();
             }
         }
         return  myBitmapCache;
@@ -29,7 +31,8 @@ public class MyBitmapCache
 
     public MyBitmapCache(){
         mMemoryCacheUtils = new MemoryCacheUtils();
-        mNetCacheUtils = new NetCacheUtils();
+        mLocalCacheUtils = new LocalCacheUtils();
+        mNetCacheUtils = new NetCacheUtils(mMemoryCacheUtils,mLocalCacheUtils);
     }
 
     /**
@@ -40,21 +43,32 @@ public class MyBitmapCache
     public void disPlay(String url, ImageView imageView){
         imageView.setImageResource(R.mipmap.icon_placeholder);
         if(url == null){
-            Log.e("MyBitmapCache","url为null");
+            Log.e("MyBitmapCache","url is null");
             return;
         }
         if(!url.isEmpty()){
             Bitmap bitmap = mMemoryCacheUtils.getBitmapFromMemCache(url);
             if(bitmap!=null)
+            {
                 imageView.setImageBitmap(bitmap);
-            else{
+                Log.e("mMemoryCacheUtils","使用缓存里的bitmap");
+                return;
+            }
+            bitmap = mLocalCacheUtils.getBitmapFileCache(MyApplication.IMAGE_PATH,url);
+            if(bitmap != null){
+                imageView.setImageBitmap(mLocalCacheUtils.getBitmapFileCache(MyApplication.IMAGE_PATH,url));
+                Log.e("mLocalCacheUtils","使用本地文件图片");
+                return;
+            }
+            if(bitmap == null){
                 mNetCacheUtils.getBitmapFromNetWorkCache(url,imageView);
                 imageView.setImageResource(R.mipmap.icon_placeholder);
+                Log.e("mMemoryCacheUtils","使用网络请求");
             }
 
         }
         else{
-            Log.e("MyBitmapCache","url为空");
+            Log.e("MyBitmapCache","url is empty");
         }
     }
 }

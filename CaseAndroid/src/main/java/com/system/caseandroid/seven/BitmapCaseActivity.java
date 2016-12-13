@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -25,13 +26,18 @@ public class BitmapCaseActivity extends BaseActivity
     TextView txtSize;
     @BindView(R.id.ima_photo)
     ImageView imaPhoto;
+    @BindView(R.id.btn_img_compress)
+    Button btnImgCompress;
+    @BindView(R.id.ima_compress)
+    ImageView imaCompress;
+    @BindView(R.id.et_url)
+    EditText etUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bitmap_case);
-        ButterKnife.bind(this);
     }
 
 
@@ -55,7 +61,14 @@ public class BitmapCaseActivity extends BaseActivity
     @OnClick(R.id.btn_img_person)
     public void getPhoto()
     {
-        MyBitmapCache.getInstance().disPlay("http://avatar.csdn.net/A/E/5/1_csdnwt.jpg",imaPhoto);
+        String url = etUrl.getText().toString().trim();
+        MyBitmapCache.getInstance().disPlay(url, imaPhoto);
+    }
+
+    @OnClick(R.id.btn_img_compress)
+    public void getPhotoCompress()
+    {
+
     }
 
 }

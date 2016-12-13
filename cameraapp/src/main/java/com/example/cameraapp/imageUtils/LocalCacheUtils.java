@@ -54,7 +54,7 @@ public class LocalCacheUtils
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
-            LogUtlis.e("本地保存图片",e.getMessage()+"");
+            LogUtlis.e("LocalCacheUtils-----setBitmapToLocal",e.getMessage()+"");
         }
     }
 }

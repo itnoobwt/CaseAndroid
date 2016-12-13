@@ -50,4 +50,16 @@
         android:typeface="monospace"
         android:onClick="matrix"/>
 
+    <Button
+        android:text="多媒体"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_video"
+        android:onClick="media"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_io"
+        android:text="断点下载"
+        android:onClick="io"/>
 </LinearLayout>

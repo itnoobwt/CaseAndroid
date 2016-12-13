@@ -22,6 +22,7 @@
     <string name="blur">模糊效果</string>
     <string name="emboss">浮雕效果</string>
     <string name="clear">清空</string>
+    <string name="get_img">获取图片(三级缓存)</string>
 
 
 </resources>

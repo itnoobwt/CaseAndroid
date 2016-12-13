@@ -23,6 +23,7 @@ import com.system.caseandroid.seven.BitmapActivity;
 import com.system.caseandroid.seven.SevenActivity;
 import com.system.caseandroid.six.SixMainActivity;
 import com.system.caseandroid.three.ThreeMainActivity;
+import com.system.caseandroid.two.TwoMainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,9 @@ public class MainActivity extends BaseActivity
                 switch (position){
                     case 0:
                         startActivity(new Intent(MainActivity.this, OneMainActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(MainActivity.this, TwoMainActivity.class));
                         break;
                     case 2:
                         startActivity(new Intent(MainActivity.this, ThreeMainActivity.class));

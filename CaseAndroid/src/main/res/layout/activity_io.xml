@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_io"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.system.caseandroid.inputUtils.IOActivity">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="下载路径"/>
+    <EditText
+        android:id="@+id/path"
+        android:text="http://192.168.1.144:9128/power/TakePhotoScan/TakePhotoScan-C3-V1.161202.apk"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    </EditText>
+    <!-- 下载按钮 -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下载"
+        android:id="@+id/button"/>
+
+    <!-- 进度条 -->
+    <ProgressBar
+        android:layout_width="fill_parent"
+        android:layout_height="20dip"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:id="@+id/downloadbar" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/resultView" />
+</LinearLayout>

@@ -3,7 +3,9 @@ package com.system.caseandroid;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
+import com.system.caseandroid.utils.FileUtils;
 
 /**
  * Created by user on 2016/11/25.
@@ -12,13 +14,20 @@ import android.util.Log;
 public class MyApplication extends Application
 {
     public static int maxMemory; //获取运行内存大小
+    public static String IMAGE_PATH;
+    public static String FILE_NAME;
     @Override
     public void onCreate()
     {
         super.onCreate();
         maxMemory = ((ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
-        Log.e("MyApplication---获取内存大小",maxMemory+"M");
-        maxMemory = maxMemory*1024*1024/8;
-        Log.e("MyApplication---获取内存大小",maxMemory+"M");
+        maxMemory = 1024*1024*maxMemory/8;
+        IMAGE_PATH = FileUtils.createFile();
+        Log.e("MyApplication","进来了。。。。");
+        create();
+    }
+
+    public void create(){
+       FILE_NAME = Environment.getExternalStorageDirectory().getAbsolutePath();
     }
 }
