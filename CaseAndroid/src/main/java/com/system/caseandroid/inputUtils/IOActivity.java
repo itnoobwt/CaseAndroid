@@ -15,6 +15,7 @@ import com.system.caseandroid.R;
 import com.system.caseandroid.inputUtils.utils.DBOpenHelper;
 import com.system.caseandroid.inputUtils.utils.DownloadProgressListener;
 import com.system.caseandroid.inputUtils.utils.FileDownloader;
+import com.system.caseandroid.utils.FileUtils;
 
 import java.io.File;
 
@@ -70,8 +71,7 @@ public class IOActivity extends BaseActivity
     {
         String path = downloadpathText.getText().toString().trim();
         Log.e("sd卡类型", Environment.getExternalStorageState() + "-------" + Environment.MEDIA_MOUNTED);
-        String p = MyApplication.FILE_NAME + "/duandian";
-        download(path, new File(p));
+        download(path, FileUtils.getInstance().getDuandianDir());
     }
 
     FileDownloader loader;

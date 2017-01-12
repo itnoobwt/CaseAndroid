@@ -46,7 +46,6 @@ public class DownloadThread extends Thread
 //                block: 538780 threadId: 1 - 11403  downLength: 0
 //                线程id：11403  开始：0  结束：538779
 
-//                block: 538780 threadId: 2 - 11404  downLength: 0
 //                线程id：11404  开始：538780  结束：1077559
 
 //                block: 538780 threadId: 3 - 11405  downLength: 0

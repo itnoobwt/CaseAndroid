@@ -57,4 +57,8 @@ public class SevenActivity extends BaseActivity
     public void io(View view){
         startActivity(new Intent(SevenActivity.this, IOActivity.class));
     }
+
+    public void upload(View v){
+        startActivity(new Intent(SevenActivity.this, UploadActivity.class));
+    }
 }

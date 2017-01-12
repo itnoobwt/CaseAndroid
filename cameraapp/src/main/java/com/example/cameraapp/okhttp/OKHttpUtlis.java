@@ -609,12 +609,12 @@ public class OKHttpUtlis
                         RequestBody.create(MediaType.parse("text/html;charest=utf-8"),"777"))
                 .addPart(Headers.of("Content-Disposition",
                         "form-data; name=\"file\";filename=\""+file.getName()+"\""),fileBody)
-//                .addPart(Headers.of("Content-Disposition",
-//                        "form-data; name=\"file1\";filename=\""+file1.getName()+"\""),fileBody1)
-//                .addPart(Headers.of("Content-Disposition",
-//                        "form-data; name=\"file2\";filename=\""+file2.getName()+"\""),fileBody2)
-//                .addPart(Headers.of("Content-Disposition",
-//                        "form-data; name=\"file3\";filename=\""+file3.getName()+"\""),fileBody3)
+                .addPart(Headers.of("Content-Disposition",
+                        "form-data; name=\"file1\";filename=\""+file1.getName()+"\""),fileBody1)
+                .addPart(Headers.of("Content-Disposition",
+                        "form-data; name=\"file2\";filename=\""+file2.getName()+"\""),fileBody2)
+                .addPart(Headers.of("Content-Disposition",
+                        "form-data; name=\"file3\";filename=\""+file3.getName()+"\""),fileBody3)
                 .build();
 
 

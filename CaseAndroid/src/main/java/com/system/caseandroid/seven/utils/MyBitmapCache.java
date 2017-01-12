@@ -9,6 +9,9 @@ import android.util.Log;
 import android.widget.ImageView;
 import com.system.caseandroid.MyApplication;
 import com.system.caseandroid.R;
+import com.system.caseandroid.utils.FileUtils;
+
+import java.io.File;
 
 /**
  * 三级缓存
@@ -54,9 +57,10 @@ public class MyBitmapCache
                 Log.e("mMemoryCacheUtils","使用缓存里的bitmap");
                 return;
             }
-            bitmap = mLocalCacheUtils.getBitmapFileCache(MyApplication.IMAGE_PATH,url);
+            bitmap = mLocalCacheUtils.getBitmapFileCache(FileUtils.getInstance().getImageDir().toString(),url);
             if(bitmap != null){
-                imageView.setImageBitmap(mLocalCacheUtils.getBitmapFileCache(MyApplication.IMAGE_PATH,url));
+                imageView.setImageBitmap(mLocalCacheUtils.getBitmapFileCache(FileUtils.getInstance().getImageDir().toString(),
+                        url));
                 Log.e("mLocalCacheUtils","使用本地文件图片");
                 return;
             }

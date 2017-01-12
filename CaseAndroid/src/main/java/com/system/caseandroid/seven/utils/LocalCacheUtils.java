@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import com.system.caseandroid.MyApplication;
+import com.system.caseandroid.utils.FileUtils;
 
 import java.io.*;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class LocalCacheUtils
     public void addBitmapFileCache(String imageName, Bitmap bitmap){
         try
         {
-            File file = new File(MyApplication.IMAGE_PATH,imageName);
+            File file = new File(FileUtils.getInstance().getImageDir(),imageName);
             File parentFile = file.getParentFile();
             if(!parentFile.exists()){
                 parentFile.mkdirs();

@@ -14,20 +14,13 @@ import com.system.caseandroid.utils.FileUtils;
 public class MyApplication extends Application
 {
     public static int maxMemory; //获取运行内存大小
-    public static String IMAGE_PATH;
-    public static String FILE_NAME;
     @Override
     public void onCreate()
     {
         super.onCreate();
         maxMemory = ((ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
         maxMemory = 1024*1024*maxMemory/8;
-        IMAGE_PATH = FileUtils.createFile();
+        FileUtils.init(this);
         Log.e("MyApplication","进来了。。。。");
-        create();
-    }
-
-    public void create(){
-       FILE_NAME = Environment.getExternalStorageDirectory().getAbsolutePath();
     }
 }

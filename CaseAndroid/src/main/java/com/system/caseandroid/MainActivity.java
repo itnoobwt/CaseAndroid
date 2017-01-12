@@ -16,7 +16,9 @@ import butterknife.BindView;
 import com.system.caseandroid.Fives.FivesMainActivity;
 import com.system.caseandroid.adapter.DividerGridItemDecoration;
 import com.system.caseandroid.adapter.MainAdapter;
+import com.system.caseandroid.eight.EightActivity;
 import com.system.caseandroid.four.FourMainActivity;
+import com.system.caseandroid.nine.NineActivity;
 import com.system.caseandroid.one.OneMainActivity;
 import com.system.caseandroid.one.TableActivity;
 import com.system.caseandroid.seven.BitmapActivity;
@@ -74,6 +76,12 @@ public class MainActivity extends BaseActivity
                     case 6:
                         startActivity(new Intent(MainActivity.this, SevenActivity.class));
                         break;
+                    case 7:
+                        startActivity(new Intent(MainActivity.this,EightActivity.class));
+                        break;
+                    case 8:
+                        startActivity(new Intent(MainActivity.this,NineActivity.class));
+                        break;
                 }
 //                if(list.get(position) == 1){
 //                    startActivity(new Intent(MainActivity.this, OneMainActivity.class));
@@ -90,7 +98,7 @@ public class MainActivity extends BaseActivity
     }
     private void initData()
     {
-        for (int i = 1;i<9;i++){
+        for (int i = 1;i<11;i++){
             list.add(i);
         }
     }

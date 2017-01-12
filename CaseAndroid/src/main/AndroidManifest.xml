@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MyApplication"
@@ -79,7 +80,11 @@
         <activity android:name=".seven.BitmapCaseActivity" />
         <activity android:name=".seven.MediaActivity" />
         <activity android:name=".two.TwoMainActivity" />
-        <activity android:name=".inputUtils.IOActivity"></activity>
+        <activity android:name=".inputUtils.IOActivity" />
+        <activity android:name=".eight.EightActivity" />
+        <activity android:name=".eight.activity.FragmentOneActivity" />
+        <activity android:name=".seven.UploadActivity" />
+        <activity android:name=".nine.NineActivity"></activity>
     </application>
 
 </manifest>

@@ -1,19 +1,22 @@
 package com.system.caseandroid.Fives;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import com.system.caseandroid.BaseActivity;
 import com.system.caseandroid.R;
 
 /**
@@ -21,6 +24,7 @@ import com.system.caseandroid.R;
  */
 public class SecondActivity extends AppCompatActivity
 {
+
     private Button btn;
     private final int PICK_CONTACT = 0;
 
@@ -45,6 +49,7 @@ public class SecondActivity extends AppCompatActivity
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -65,15 +70,16 @@ public class SecondActivity extends AppCompatActivity
                         String phoneNumber = "次联系人暂未输入电话号码";
                         try
                         {
-                            Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
-                                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
+                            Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
                             if (phones.moveToFirst())
                             {
                                 phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                             }
                             phones.close();
-                        }catch (Exception e){
-                            Log.e("error",e.getMessage());
+                        }
+                        catch (Exception e)
+                        {
+                            Log.e("error", e.getMessage());
                         }
 
 
@@ -89,7 +95,8 @@ public class SecondActivity extends AppCompatActivity
         }
     }
 
-    public void home(View v){
+    public void home(View v)
+    {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -98,36 +105,44 @@ public class SecondActivity extends AppCompatActivity
 
     /**
      * 同一个Intent对象使用type、data第二者会覆盖第一者value值
+     *
      * @param v
      */
-    public void dataOrtype(View v){
+    public void dataOrtype(View v)
+    {
         Intent intent = new Intent();
         intent.setType("abc/xyz");
         intent.setData(Uri.parse("lee://www.fkjava.org:8888/test"));
         Toast.makeText(this, intent.toString(), Toast.LENGTH_SHORT).show();
     }
-    public void dataOrtype1(View v){
+
+    public void dataOrtype1(View v)
+    {
         Intent intent = new Intent();
         intent.setData(Uri.parse("lee://www.fkjava.org:8888/test"));
         intent.setType("abc/xyz");
         Toast.makeText(this, intent.toString(), Toast.LENGTH_SHORT).show();
     }
+
     /**
      * 同一个Intent对象使用DataAndType并存value值
      *
      * @param v
      */
-    public void dataAndtype(View v){
+    public void dataAndtype(View v)
+    {
         Intent intent = new Intent();
-        intent.setDataAndType(Uri.parse("lee://www.fkjava.org:8888/test"),"abc/xyz");
+        intent.setDataAndType(Uri.parse("lee://www.fkjava.org:8888/test"), "abc/xyz");
         Toast.makeText(this, intent.toString(), Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 使用Action、Data属性启动系统Activity
+     *
      * @param v
      */
-    public void actionAndData(View v){
+    public void actionAndData(View v)
+    {
         Intent intent = new Intent();
         String data = "http://www.crazyit.org";
         //根据指定字符串解析Uri对象
@@ -138,7 +153,9 @@ public class SecondActivity extends AppCompatActivity
         intent.setData(uri);
         startActivity(intent);
     }
-    public void edit(View v){
+
+    public void edit(View v)
+    {
         try
         {
             Intent intent = new Intent();
@@ -150,12 +167,16 @@ public class SecondActivity extends AppCompatActivity
             //设置Data属性
             intent.setData(uri);
             startActivity(intent);
-        }catch (Exception e){
-            Log.e("error",e.getMessage());
+        }
+        catch (Exception e)
+        {
+            Log.e("error", e.getMessage());
         }
 
     }
-    public void call(View v){
+
+    public void call(View v)
+    {
         try
         {
             Intent intent = new Intent();
@@ -167,9 +188,18 @@ public class SecondActivity extends AppCompatActivity
             //设置Data属性
             intent.setData(uri);
             startActivity(intent);
-        }catch (Exception e){
-            Log.e("error",e.getMessage());
         }
+        catch (Exception e)
+        {
+            Log.e("error", e.getMessage());
+        }
+
+    }
+
+    public void Map(View v){
+        Uri mapUri = Uri.parse("geo:100,100");
+        Intent intent = new Intent(Intent.ACTION_VIEW,mapUri);
+        startActivity(intent);
 
     }
 }

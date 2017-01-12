@@ -65,4 +65,11 @@
         android:text="使用Action、Data属性启动系统Activity"
         android:onClick="call"/>
 
+    <Button
+        android:text="调用系统地图"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="Map"
+        android:id="@+id/btn_map" />
+
 </LinearLayout>
