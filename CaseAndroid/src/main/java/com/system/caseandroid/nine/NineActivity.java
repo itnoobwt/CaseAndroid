@@ -33,16 +33,8 @@ public class NineActivity extends BaseActivity
 
     @OnClick(R.id.ok_select)
     public void getHttps(){
-        try
-        {
-            is = getAssets().open("SRCA.crt");
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
         HttpsNetWork httpsNetWork = new HttpsNetWork();
-        httpsNetWork.execute("https://kyfw.12306.cn/otn/");
+        httpsNetWork.execute("https://192.168.144:8443");
 
     }
 
@@ -57,7 +49,7 @@ public class NineActivity extends BaseActivity
         @Override
         protected String doInBackground(String... params)
         {
-            return OKhttpClientManager.getInstance().OKhttpRequest("https://kyfw.12306.cn/otn/",is);
+            return OKhttpClientManager.getInstance(NineActivity.this).OKhttpRequest("https://192.168.1.144:8443/power/");
         }
 
         @Override
